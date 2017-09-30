@@ -4,17 +4,19 @@
 \alias{ptree_criteria}
 \title{Function for determining a pathway}
 \usage{
-ptree_criteria(newtree, node_id, left)
+ptree_criteria(newtree, node_id, left, as.party.tree)
 }
 \arguments{
-\item{newtree}{decision tree}
+\item{newtree}{Decision tree}
+
+\item{node_id}{Node id}
+
+\item{left}{Splits to the left}
+
+\item{as.party.tree}{convert to a party object}
 }
 \description{
-Function for determining a pathway
-}
-\examples{
-
-ptree_criteria()
+Identifies the splitting criteria for the relevant node leading to lower level inner nodes or a terminal node.
 }
 \keyword{decision}
 \keyword{pathway}

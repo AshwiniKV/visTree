@@ -4,17 +4,23 @@
 \alias{l_node}
 \title{Function for determining a pathway}
 \usage{
-l_node(newtree, node_id = 1, start_criteria = character(0))
+l_node(newtree, node_id = 1, start_criteria = character(0), as.party.tree)
 }
 \arguments{
-\item{newtree}{Decision tree}
+\item{newtree}{Decision tree generated as a party object}
+
+\item{node_id}{Node ID}
+
+\item{start_criteria}{Criteria}
+
+\item{as.party.tree}{Convert to a party object}
 }
 \description{
-Function for determining a pathway
+Decision tree structure
 }
 \examples{
+l_node(partykit::ctree(Girth ~ ., data = trees), as.party.tree = FALSE)
 
-l_node()
 }
 \keyword{decision}
 \keyword{pathway}

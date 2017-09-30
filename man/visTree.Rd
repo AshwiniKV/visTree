@@ -2,23 +2,33 @@
 % Please edit documentation in R/visTree.R
 \name{visTree}
 \alias{visTree}
-\title{Visualization}
+\title{Visualization of subgroups for decision trees}
 \usage{
-visTree(cond.tree, rng = NULL, interval, as.party.tree = T, color.type,
-  alpha)
+visTree(cond.tree, rng = NULL, interval, as.party.tree, color.type = 2,
+  alpha = 0.4)
 }
 \arguments{
-\item{cond.tree}{Decision tree}
+\item{cond.tree}{Decision tree generated as a party object.}
 
-\item{rng}{Range}
+\item{rng}{Restrict plotting to a particular set of nodes. Default value equivalent to NULL}
+
+\item{interval}{Continuous (interval = FALSE); Categorical variable (interval = TRUE).}
+
+\item{as.party.tree}{Convert to a party object from other decision tree types such as an rpart object.}
+
+\item{color.type}{Choice of color palettes. (rainbow = 1; heat.colors = 2; terrain.colors = 3; topo.colors = 4 ; cm.colors = 5)}
+
+\item{alpha}{Transparency for individual horizonatal colored bars within each subplot. Choose values between 0 to 1}
 }
 \description{
-Visualization
+Characterize subgroups defined by the decision tree structure and identify the range of covariate values associated with outcome values in each subgroup
 }
 \examples{
+visTree(partykit::ctree(Girth ~ ., data = trees), interval = FALSE, as.party.tree = FALSE)
 
-visTree()
-
+}
+\author{
+Ashwini Venkatasubramaniam and Julian Wolfson
 }
 \keyword{decision}
 \keyword{pathway}

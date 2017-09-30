@@ -1,11 +1,11 @@
-#' Function for determining a pathway
+#'Function for determining a pathway
 #'
-#'@param newtree Decision tree
+#'Identifies a node that corresponds to the left split
+#'
+#'@param newtree Decision tree generated as a party object
+#'@param start_id Start ID 
 #'@keywords pathway decision tree
-#'@export
-#'@examples
 #'
-#'ptree_left()
 
 ptree_left <- function(newtree, start_id){
   node<-as.list(node_party(newtree))

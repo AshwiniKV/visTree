@@ -7,14 +7,12 @@
 ptree_left(newtree, start_id)
 }
 \arguments{
-\item{newtree}{Decision tree}
+\item{newtree}{Decision tree generated as a party object}
+
+\item{start_id}{Start ID}
 }
 \description{
-Function for determining a pathway
-}
-\examples{
-
-ptree_left()
+Identifies a node that corresponds to the left split
 }
 \keyword{decision}
 \keyword{pathway}

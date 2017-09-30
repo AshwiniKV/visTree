@@ -2,19 +2,20 @@
 % Please edit documentation in R/makeTransparent.R
 \name{makeTransparent}
 \alias{makeTransparent}
-\title{Function for determining a pathway}
+\title{Color Scheme}
 \usage{
-makeTransparent(..., alpha)
+makeTransparent(colortype, alpha)
 }
 \arguments{
-\item{treet}{Decision tree}
+\item{colortype}{Selected color palette}
+
+\item{alpha}{Transparency}
 }
 \description{
-Function for determining a pathway
+Function to adjust the transparency and define the color scheme within the visualization.
 }
 \examples{
-
-makeTransparent()
+makeTransparent(colortype = rainbow(2), alpha = 0.7)
 
 }
 \keyword{decision}

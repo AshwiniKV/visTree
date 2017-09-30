@@ -1,12 +1,10 @@
 #' Function for determining a pathway
 #'
+#'Parsing function
+#'
 #'@param x String
 #'@keywords pathway decision tree
 #'@export
-#'@examples
-#'
-#'trim()
-#'
 
 trim <-function (x){
   gsub("^\\s+|\\s+$", "", x)}

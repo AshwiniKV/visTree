@@ -1,12 +1,19 @@
-#' Plots
+#' Generate individual subplots within the graphical visualization
 #'
-#'@param My Minmax.mat
+#' A series of sub-plots that correspond to individual terminal nodes within the decision tree structure. Each subplot is composed of a histogram in the background that shows the distribution of the outcome for individuals in this subgroup and colored horizontal bars which summarize the set of covariate splits used to define the subgroup.
+#'
+#'@param My A matrix to define the split points within the decision tree structure
 #'@param X Covariates
+#'@param Y Response variable
+#'@param str Structure of the pathway parsed to suggest the splits and relevant criterions for each terminal node
+#'@param color.type Color palettes. (rainbow = 1; heat.colors = 2; terrain.colors = 3; topo.colors = 4 ; cm.colors = 5)
+#'@param alpha Transparency of individual horizontal bars. Choose values between 0 to 1
 #'@keywords matrix pathway decision tree
 #'@export
-#'@examples
+#'@importFrom graphics barplot hist par plot polygon segments text
+#'@importFrom stats aggregate ecdf fitted
+#'@importFrom grDevices cm.colors col2rgb gray heat.colors rainbow rgb terrain.colors topo.colors
 #'
-#'plot_minmax()
 #'
 
 plot_minmax <- function(My,X,Y, str, color.type, alpha) {

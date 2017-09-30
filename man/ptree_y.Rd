@@ -8,13 +8,11 @@ ptree_y(newtree, node_id)
 }
 \arguments{
 \item{newtree}{Decision tree}
+
+\item{node_id}{Node ID}
 }
 \description{
-Function for determining a pathway
-}
-\examples{
-
-ptree_y()
+Identifies the predicted outcome value for the relevant node.
 }
 \keyword{decision}
 \keyword{pathway}

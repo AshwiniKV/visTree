@@ -1,11 +1,12 @@
 #' Function for determining a pathway
 #'
+#'Identifies a node that corresponds to the right split
+#'
 #'@param newtree Decision tree
+#'@param start_id Start ID 
 #'@keywords pathway decision tree
 #'@export
-#'@examples
-#'
-#'ptree_right()
+
 
 ptree_right <- function(newtree, start_id){
   node<-as.list(node_party(newtree))

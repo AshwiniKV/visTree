@@ -4,20 +4,19 @@
 \alias{minmax_mat}
 \title{Minmax matrix}
 \usage{
-minmax_mat(str, varnms, interval)
+minmax_mat(Y, str, varnms, interval)
 }
 \arguments{
-\item{str}{Structure}
+\item{Y}{Response variable in the dataset}
 
-\item{varnms}{Variable names}
+\item{str}{Decision tree structure}
+
+\item{varnms}{Names of covariates}
+
+\item{interval}{Specify the nature of the response variable Y. Categorical (TRUE) and continuous outcomes (FALSE).}
 }
 \description{
-Minmax matrix
-}
-\examples{
-
-minmax_mat()
-
+Identifies splits and relevant criteria
 }
 \keyword{decision}
 \keyword{pathway}

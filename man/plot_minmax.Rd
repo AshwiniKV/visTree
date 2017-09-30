@@ -2,22 +2,25 @@
 % Please edit documentation in R/plot_minmax.R
 \name{plot_minmax}
 \alias{plot_minmax}
-\title{Plots}
+\title{Generate individual subplots within the graphical visualization}
 \usage{
 plot_minmax(My, X, Y, str, color.type, alpha)
 }
 \arguments{
-\item{My}{Minmax.mat}
+\item{My}{A matrix to define the split points within the decision tree structure}
 
 \item{X}{Covariates}
+
+\item{Y}{Response variable}
+
+\item{str}{Structure of the pathway parsed to suggest the splits and relevant criterions for each terminal node}
+
+\item{color.type}{Color palettes. (rainbow = 1; heat.colors = 2; terrain.colors = 3; topo.colors = 4 ; cm.colors = 5)}
+
+\item{alpha}{Transparency of individual horizontal bars. Choose values between 0 to 1}
 }
 \description{
-Plots
-}
-\examples{
-
-plot_minmax()
-
+A series of sub-plots that correspond to individual terminal nodes within the decision tree structure. Each subplot is composed of a histogram in the background that shows the distribution of the outcome for individuals in this subgroup and colored horizontal bars which summarize the set of covariate splits used to define the subgroup.
 }
 \keyword{decision}
 \keyword{matrix}

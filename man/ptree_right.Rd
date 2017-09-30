@@ -8,13 +8,11 @@ ptree_right(newtree, start_id)
 }
 \arguments{
 \item{newtree}{Decision tree}
+
+\item{start_id}{Start ID}
 }
 \description{
-Function for determining a pathway
-}
-\examples{
-
-ptree_right()
+Identifies a node that corresponds to the right split
 }
 \keyword{decision}
 \keyword{pathway}

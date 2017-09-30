@@ -1,15 +1,16 @@
 #' Minmax matrix
-#'
-#'@param str Structure
-#'@param varnms Variable names
+#' 
+#' Identifies splits and relevant criteria
+#'@param Y Response variable in the dataset
+#'@param str Decision tree structure
+#'@param varnms Names of covariates
+#'@param interval Specify the nature of the response variable Y. Categorical (TRUE) and continuous outcomes (FALSE). 
 #'@keywords visualization pathway decision tree
 #'@export
-#'@examples
-#'
-#'minmax_mat()
+#'@import partykit
 #'
 
-minmax_mat <- function(str,varnms, interval) {
+minmax_mat <- function(Y, str,varnms, interval) {
   ## Helper function to create a matrix of ranges for each variable in a path to a node
   comps <- strsplit(str,",")
   MMM <- matrix(data=rep(c(-Inf,Inf, " "),length(varnms)),nrow=length(varnms),ncol=3,byrow=TRUE) ### min-max matrix

@@ -10,12 +10,7 @@ trim(x)
 \item{x}{String}
 }
 \description{
-Function for determining a pathway
-}
-\examples{
-
-trim()
-
+Parsing function
 }
 \keyword{decision}
 \keyword{pathway}

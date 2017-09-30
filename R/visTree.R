@@ -1,18 +1,29 @@
-#' Visualization
+#' Visualization of subgroups for decision trees
+#' 
+#' Characterize subgroups defined by the decision tree structure and identify the range of covariate values associated with outcome values in each subgroup
 #'
-#'@param cond.tree Decision tree
-#'@param rng Range
+#'@param cond.tree Decision tree generated as a party object.
+#'@param rng Restrict plotting to a particular set of nodes. Default value equivalent to NULL
+#'@param interval Continuous (interval = FALSE); Categorical variable (interval = TRUE).
+#'@param as.party.tree Convert to a party object from other decision tree types such as an rpart object. 
+#'@param color.type Choice of color palettes. (rainbow = 1; heat.colors = 2; terrain.colors = 3; topo.colors = 4 ; cm.colors = 5)
+#'@param alpha Transparency for individual horizonatal colored bars within each subplot. Choose values between 0 to 1
 #'@keywords visualization pathway decision tree
+#'@author Ashwini Venkatasubramaniam and Julian Wolfson 
 #'@export
+#'@importFrom utils capture.output tail 
 #'@examples
-#'
-#'visTree()
+#'visTree(partykit::ctree(Girth ~ ., data = trees), interval = FALSE, as.party.tree = FALSE)
 #'
 
-visTree <- function(cond.tree,rng=NULL, interval, as.party.tree = T, color.type, alpha) {
+visTree <- function(cond.tree,rng=NULL, interval, as.party.tree, color.type = 2, alpha = 0.4) {
   ## Wrapper function to produce plots from a conditional inference tree
   ## 'range' parameter can restrict plotting to a particular set of nodes
-  splittree<-list_node(cond.tree)
+  if(as.party.tree == TRUE){
+    splittree<-list_node(cond.tree, as.party.tree = TRUE)
+  }else{
+    splittree<-list_node(cond.tree, as.party.tree = FALSE) 
+  }
   structure<-strsplit(splittree, split=";")
   #structure<-unlist(strsplit(list_node(cond.tree), split=";"))
   terminal.id<-nodeids(cond.tree, terminal = TRUE)
@@ -76,6 +87,6 @@ visTree <- function(cond.tree,rng=NULL, interval, as.party.tree = T, color.type,
   if(length(index)>10) stop("Number of subgroups is too large")
   par(mfrow=c(2,ceiling(length(index)/2)),mar=c(2,1,3,1))
   
-  sapply(unlist(structure)[index],function(S) { plot_minmax(minmax_mat(S,colnames(X), interval),X,Y, S, color.type, alpha)})
+  sapply(unlist(structure)[index],function(S) { plot_minmax(minmax_mat(Y, S,colnames(X), interval), X,Y, S, color.type, alpha)})
   
 }
