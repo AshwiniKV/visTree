@@ -5,7 +5,7 @@
 \title{Visualization of subgroups for decision trees}
 \usage{
 visTree(cond.tree, rng = NULL, interval, as.party.tree, color.type = 2,
-  alpha = 0.4)
+  alpha = 0.5)
 }
 \arguments{
 \item{cond.tree}{Decision tree generated as a party object.}
@@ -16,15 +16,15 @@ visTree(cond.tree, rng = NULL, interval, as.party.tree, color.type = 2,
 
 \item{as.party.tree}{Convert to a party object from other decision tree types such as an rpart object.}
 
-\item{color.type}{Choice of color palettes. (rainbow = 1; heat.colors = 2; terrain.colors = 3; topo.colors = 4 ; cm.colors = 5)}
+\item{color.type}{Choice of color palettes. (rainbow = 1; heat.colors = 2; terrain.colors = 3; topo.colors = 4 ; cm.colors = 5). Default choice is heat.colors; color = 2.}
 
-\item{alpha}{Transparency for individual horizonatal colored bars within each subplot. Choose values between 0 to 1}
+\item{alpha}{Transparency for individual horizonatal colored bars within each subplot. Choose values between 0 to 1. Default value is alpha = 0.5}
 }
 \description{
 Characterize subgroups defined by the decision tree structure and identify the range of covariate values associated with outcome values in each subgroup
 }
 \examples{
-visTree(partykit::ctree(Girth ~ ., data = trees), interval = FALSE, as.party.tree = FALSE)
+visTree(partykit::ctree(Education ~ ., data = swiss), interval = FALSE, as.party.tree = FALSE)
 
 }
 \author{

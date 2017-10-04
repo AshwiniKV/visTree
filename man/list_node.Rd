@@ -15,7 +15,7 @@ list_node(newtree, as.party.tree)
 Generates the pathway from the root node to individual terminal nodes of a decision tree generated as a party object using the partykit package.
 }
 \examples{
-list_node(partykit::ctree(Girth ~ ., data = trees), as.party.tree = FALSE)
+list_node(partykit::ctree(Education ~ ., data = swiss), as.party.tree = FALSE)
 
 }
 \keyword{decision}
