@@ -11,7 +11,7 @@ l_node(newtree, node_id = 1, start_criteria = character(0), as.party.tree)
 
 \item{node_id}{Node ID}
 
-\item{start_criteria}{Criteria}
+\item{start_criteria}{Character vector}
 
 \item{as.party.tree}{Convert to a party object}
 }
@@ -19,7 +19,7 @@ l_node(newtree, node_id = 1, start_criteria = character(0), as.party.tree)
 Decision tree structure
 }
 \examples{
-l_node(partykit::ctree(Education ~ ., data = swiss), as.party.tree = FALSE)
+l_node(partykit::ctree(Girth ~ ., data = trees), as.party.tree = FALSE)
 
 }
 \keyword{decision}

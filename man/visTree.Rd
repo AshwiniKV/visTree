@@ -5,26 +5,26 @@
 \title{Visualization of subgroups for decision trees}
 \usage{
 visTree(cond.tree, rng = NULL, interval, as.party.tree, color.type = 2,
-  alpha = 0.5)
+  alpha = 0.4)
 }
 \arguments{
 \item{cond.tree}{Decision tree generated as a party object.}
 
-\item{rng}{Restrict plotting to a particular set of nodes. Default value equivalent to NULL}
+\item{rng}{Restrict plotting to a particular set of nodes. Default value is set as NULL}
 
-\item{interval}{Continuous (interval = FALSE); Categorical variable (interval = TRUE).}
+\item{interval}{logical. Continuous (interval = FALSE) and Categorical variable (interval = TRUE).}
 
-\item{as.party.tree}{Convert to a party object from other decision tree types such as an rpart object.}
+\item{as.party.tree}{logical. Convert to a party object from other decision tree types such as an rpart object.}
 
-\item{color.type}{Choice of color palettes. (rainbow = 1; heat.colors = 2; terrain.colors = 3; topo.colors = 4 ; cm.colors = 5). Default choice is heat.colors; color = 2.}
+\item{color.type}{Color palettes (rainbow = 1; heat.colors = 2; terrain.colors = 3; topo.colors = 4 ; cm.colors = 5)}
 
-\item{alpha}{Transparency for individual horizonatal colored bars within each subplot. Choose values between 0 to 1. Default value is alpha = 0.5}
+\item{alpha}{Transparency for individual horizonatal colored bars within each subplot. Values between 0 to 1.}
 }
 \description{
-Characterize subgroups defined by the decision tree structure and identify the range of covariate values associated with outcome values in each subgroup
+This visualization characterizes subgroups defined by a decision tree structure and identifies the range of covariate values associated with outcome values in each subgroup.
 }
 \examples{
-visTree(partykit::ctree(Education ~ ., data = swiss), interval = FALSE, as.party.tree = FALSE)
+visTree(partykit::ctree(Girth ~ ., data = trees), interval = FALSE, as.party.tree = FALSE)
 
 }
 \author{

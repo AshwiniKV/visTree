@@ -2,7 +2,7 @@
 % Please edit documentation in R/ptree_criteria.R
 \name{ptree_criteria}
 \alias{ptree_criteria}
-\title{Function for determining a pathway}
+\title{Splitting Criteria}
 \usage{
 ptree_criteria(newtree, node_id, left, as.party.tree)
 }

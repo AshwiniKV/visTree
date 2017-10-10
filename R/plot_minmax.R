@@ -5,9 +5,9 @@
 #'@param My A matrix to define the split points within the decision tree structure
 #'@param X Covariates
 #'@param Y Response variable
-#'@param str Structure of the pathway parsed to suggest the splits and relevant criterions for each terminal node
+#'@param str Structure of pathway from the root node in the decision tree to each terminal node
 #'@param color.type Color palettes. (rainbow = 1; heat.colors = 2; terrain.colors = 3; topo.colors = 4 ; cm.colors = 5)
-#'@param alpha Transparency of individual horizontal bars. Choose values between 0 to 1
+#'@param alpha Transparency of individual horizontal bars. Choose values between 0 to 1.
 #'@keywords matrix pathway decision tree
 #'@export
 #'@importFrom graphics barplot hist par plot polygon segments text

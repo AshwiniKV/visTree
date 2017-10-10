@@ -7,7 +7,7 @@
 ptree_y(newtree, node_id)
 }
 \arguments{
-\item{newtree}{Decision tree}
+\item{newtree}{Decision tree generated as a party object}
 
 \item{node_id}{Node ID}
 }

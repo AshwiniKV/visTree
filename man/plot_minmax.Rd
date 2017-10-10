@@ -13,11 +13,11 @@ plot_minmax(My, X, Y, str, color.type, alpha)
 
 \item{Y}{Response variable}
 
-\item{str}{Structure of the pathway parsed to suggest the splits and relevant criterions for each terminal node}
+\item{str}{Structure of pathway from the root node in the decision tree to each terminal node}
 
 \item{color.type}{Color palettes. (rainbow = 1; heat.colors = 2; terrain.colors = 3; topo.colors = 4 ; cm.colors = 5)}
 
-\item{alpha}{Transparency of individual horizontal bars. Choose values between 0 to 1}
+\item{alpha}{Transparency of individual horizontal bars. Choose values between 0 to 1.}
 }
 \description{
 A series of sub-plots that correspond to individual terminal nodes within the decision tree structure. Each subplot is composed of a histogram in the background that shows the distribution of the outcome for individuals in this subgroup and colored horizontal bars which summarize the set of covariate splits used to define the subgroup.

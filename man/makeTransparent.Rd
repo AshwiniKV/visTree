@@ -7,7 +7,7 @@
 makeTransparent(colortype, alpha)
 }
 \arguments{
-\item{colortype}{Selected color palette}
+\item{colortype}{Color palette}
 
 \item{alpha}{Transparency}
 }

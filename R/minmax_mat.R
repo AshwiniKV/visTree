@@ -2,9 +2,9 @@
 #' 
 #' Identifies splits and relevant criteria
 #'@param Y Response variable in the dataset
-#'@param str Decision tree structure
+#'@param str Structure of pathway from the root node in the decision tree to each terminal node
 #'@param varnms Names of covariates
-#'@param interval Specify the nature of the response variable Y. Categorical (TRUE) and continuous outcomes (FALSE). 
+#'@param interval logical. Continuous (interval = FALSE) and Categorical variable (interval = TRUE).
 #'@keywords visualization pathway decision tree
 #'@export
 #'@import partykit

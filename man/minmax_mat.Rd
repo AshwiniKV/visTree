@@ -9,11 +9,11 @@ minmax_mat(Y, str, varnms, interval)
 \arguments{
 \item{Y}{Response variable in the dataset}
 
-\item{str}{Decision tree structure}
+\item{str}{Structure of pathway from the root node in the decision tree to each terminal node}
 
 \item{varnms}{Names of covariates}
 
-\item{interval}{Specify the nature of the response variable Y. Categorical (TRUE) and continuous outcomes (FALSE).}
+\item{interval}{logical. Continuous (interval = FALSE) and Categorical variable (interval = TRUE).}
 }
 \description{
 Identifies splits and relevant criteria

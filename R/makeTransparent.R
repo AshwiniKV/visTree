@@ -2,7 +2,7 @@
 #'
 #' Function to adjust the transparency and define the color scheme within the visualization. 
 #'
-#'@param colortype Selected color palette
+#'@param colortype Color palette
 #'@param alpha Transparency 
 #'@keywords pathway decision tree
 #'@export

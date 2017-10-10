@@ -2,7 +2,7 @@
 #'
 #'Identifies the predicted outcome value for the relevant node.
 #'
-#'@param newtree Decision tree
+#'@param newtree Decision tree generated as a party object
 #'@param node_id Node ID
 #'@keywords pathway decision tree
 #'@export

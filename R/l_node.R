@@ -4,7 +4,7 @@
 #'
 #'@param newtree Decision tree generated as a party object
 #'@param node_id Node ID
-#'@param start_criteria Criteria 
+#'@param start_criteria Character vector
 #'@param as.party.tree Convert to a party object
 #'@keywords pathway decision tree
 #'@export

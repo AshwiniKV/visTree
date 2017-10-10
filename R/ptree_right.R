@@ -1,9 +1,9 @@
-#' Function for determining a pathway
+#' Right Split
 #'
 #'Identifies a node that corresponds to the right split
 #'
-#'@param newtree Decision tree
-#'@param start_id Start ID 
+#'@param newtree Decision tree generated as a party object
+#'@param start_id Character vector
 #'@keywords pathway decision tree
 #'@export
 

@@ -1,4 +1,4 @@
-#' Function for determining a pathway
+#' Splitting Criteria
 #'
 #'Identifies the splitting criteria for the relevant node leading to lower level inner nodes or a terminal node.
 #'

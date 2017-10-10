@@ -2,14 +2,14 @@
 % Please edit documentation in R/ptree_right.R
 \name{ptree_right}
 \alias{ptree_right}
-\title{Function for determining a pathway}
+\title{Right Split}
 \usage{
 ptree_right(newtree, start_id)
 }
 \arguments{
-\item{newtree}{Decision tree}
+\item{newtree}{Decision tree generated as a party object}
 
-\item{start_id}{Start ID}
+\item{start_id}{Character vector}
 }
 \description{
 Identifies a node that corresponds to the right split
