@@ -20,12 +20,12 @@ visTree <- function(cond.tree,rng=NULL, interval, as.party.tree, color.type = 2,
   ## Wrapper function to produce plots from a conditional inference tree
   ## 'range' parameter can restrict plotting to a particular set of nodes
   if(as.party.tree == TRUE){
-    splittree<-list_node(cond.tree, as.party.tree = TRUE)
+    splittree<-path_node(cond.tree, as.party.tree = TRUE)
   }else{
-    splittree<-list_node(cond.tree, as.party.tree = FALSE) 
+    splittree<-path_node(cond.tree, as.party.tree = FALSE) 
   }
   structure<-strsplit(splittree, split=";")
-  #structure<-unlist(strsplit(list_node(cond.tree), split=";"))
+  #structure<-unlist(strsplit(path_node(cond.tree), split=";"))
   terminal.id<-nodeids(cond.tree, terminal = TRUE)
   if(length(structure[[1]]) == length(terminal.id)){
     structure[[1]]<-sapply(1:length(structure[[1]]), function(i){
