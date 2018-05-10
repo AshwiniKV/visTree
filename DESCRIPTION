@@ -1,0 +1,12 @@
+Package: visTree
+Title: Visualization of subgroups using decision trees
+Version: 0.0.0.9000
+Authors@R: c(person("Ashwini", "Venkatasubramaniam", role = c("aut", "cre"), email = "a.venkatasubramaniam.1@research.gla.ac.uk"), person("Julian", "Wolfson", role = c("aut", "ctb"), email = "julianw@umn.edu"))
+Description: This package provides a visualization for characterizing subgroups defined by a decision tree structure and identifying the range of covariate values associated with outcome values in each subgroup. The visualization simplifies the ability to interpret individual pathways to subgroups and each sub-plot describes distributions of observations within individual terminal nodes and corresponding inner nodes.
+Depends: R (>= 3.4.0)
+License: GPL-3
+Encoding: UTF-8
+Imports: partykit, colorspace
+LazyData: true
+RoxygenNote: 6.0.1
+Suggests: testthat
