@@ -1,4 +1,4 @@
-# visTree 0.0.1 (11th May 2018)
+# visTree 0.0.1 (May 11th 2018)
 
 ## First Version
 
