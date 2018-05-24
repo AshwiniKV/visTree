@@ -9,7 +9,7 @@
 #' @export
 #'
 
-minmax.mat <- function(str, varnms, Y, interval) {
+minmax_mat <- function(str, varnms, Y, interval) {
   ## Helper function to create a matrix of ranges for each variable in a path to a node
   comps <- strsplit(str, ",")
   MMM <- matrix(data = rep(c(-Inf, Inf, " "), length(varnms)), nrow = length(varnms), ncol = 3, byrow = TRUE) ### min-max matrix

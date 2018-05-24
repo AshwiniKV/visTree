@@ -5,7 +5,7 @@
 #' @param newtree Decision tree generated as a party object
 #' @param start_id Character vector
 #' @keywords pathway decision tree
-#'
+#' @export
 
 ptree_left <- function(newtree, start_id) {
   node <- as.list(node_party(newtree))

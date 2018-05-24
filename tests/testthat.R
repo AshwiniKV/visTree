@@ -19,10 +19,16 @@ Y.trainl <- as.data.frame(Yl)
 # Conditional Inference tree
 cond.tree1 <- ctree(Y ~ x1 + x2 + x3, data = Y.trainl, control = ctree_control(mincriterion = 0.65))
 
-first_termnode <- partykit::nodeids(cond.tree1, termina = TRUE)[1]
+first_termnode <- partykit::nodeids(cond.tree1, terminal = TRUE)[1]
 obs.first_tnode <- which(data_party(cond.tree1)$"(fitted)" == first_termnode)
 term_mean <- mean(data_party(cond.tree1)$"(response)"[obs.first_tnode])
+#new<-visTree::ptree_criteria(cond.tree1, 1, TRUE)
 
 test_that("Prediction_terminal node", {
   expect_identical(ptree_y(cond.tree1, first_termnode), term_mean)
+})
+
+first_split<-strsplit(partykit:::.list.rules.party(cond.tree1)[1], " & ")[[1]][1]
+test_that("Split_node", {
+  expect_identical(ptree_criteria(cond.tree1, 1, TRUE), first_split)
 })

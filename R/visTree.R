@@ -123,7 +123,7 @@ visTree <- function(cond.tree, rng=NULL, interval, color.type, alpha, text.main,
 
   invisible(
     sapply(unlist(structure)[index], function(S) {
-      plot_minmax(minmax.mat(S, colnames(X), Y, interval), X, Y, S, color.type, alpha, cond.tree, text.main, text.bar, text.title, text.label, text.axis)
+      plot_minmax(minmax_mat(S, colnames(X), Y, interval), X, Y, S, color.type, alpha, cond.tree, text.main, text.bar, text.title, text.label, text.axis)
     })
   )
 }
