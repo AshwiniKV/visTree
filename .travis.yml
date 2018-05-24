@@ -6,4 +6,7 @@ addons:
     apt:
       update: true
 cache: packages
+r_packages:
+  - covr
+
 
