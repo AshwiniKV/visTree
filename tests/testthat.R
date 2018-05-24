@@ -26,8 +26,6 @@ choose_inner<-nodeids(cond.tree1, terminal = FALSE) %in% nodeids(cond.tree1, ter
 index_left<-nodeids(cond.tree1)[!choose_inner][2]
 index_right<-nodeids(cond.tree1)[!choose_inner][5]
 
-#new<-visTree::ptree_criteria(cond.tree1, 1, TRUE)
-
 test_that("Prediction_terminal node", {
   expect_identical(ptree_y(cond.tree1, first_termnode), term_mean)
 })
