@@ -22,13 +22,26 @@ cond.tree1 <- ctree(Y ~ x1 + x2 + x3, data = Y.trainl, control = ctree_control(m
 first_termnode <- partykit::nodeids(cond.tree1, terminal = TRUE)[1]
 obs.first_tnode <- which(data_party(cond.tree1)$"(fitted)" == first_termnode)
 term_mean <- mean(data_party(cond.tree1)$"(response)"[obs.first_tnode])
+choose_inner<-nodeids(cond.tree1, terminal = FALSE) %in% nodeids(cond.tree1, terminal= TRUE)
+index_left<-nodeids(cond.tree1)[!choose_inner][2]
+index_right<-nodeids(cond.tree1)[!choose_inner][5]
+
 #new<-visTree::ptree_criteria(cond.tree1, 1, TRUE)
 
 test_that("Prediction_terminal node", {
   expect_identical(ptree_y(cond.tree1, first_termnode), term_mean)
 })
 
+test_that("Inner nodes - Left split", {
+  expect_identical(ptree_left(cond.tree1, 1), nodeids(cond.tree1)[index_left])
+})
+
+test_that("Inner nodes - Right split", {
+  expect_identical(ptree_right(cond.tree1, 1), nodeids(cond.tree1)[index_right])
+})
+
 first_split<-strsplit(partykit:::.list.rules.party(cond.tree1)[1], " & ")[[1]][1]
 test_that("Split_node", {
   expect_identical(ptree_criteria(cond.tree1, 1, TRUE), first_split)
 })
+
