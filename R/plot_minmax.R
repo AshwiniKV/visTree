@@ -106,7 +106,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
   if (is.factor(Y)) {
     bp <- barplot(scale.factor * H$density, width = wdth, yaxt = "n", col = rgb(0, 0, 0, 0.15), border = rgb(0, 0, 0, 0.1), add = FALSE, space = 0)
     ## Add the category labels
-    text(seq(wdth / 2, 1 - wdth / 2, by = wdth), rep(0, length(levels(Y))), levels(Y), pos = 3, adj = 0.5, cex = text.bar, col = gray(0.1))
+    text(seq(wdth / 2, 1 - wdth / 2, by = wdth), rep(0, length(levels(Y))), levels(Y), pos = 3, adj = 0.5, cex = text.bar, font = 2)
     # text(seq(wdth/2,1-wdth/2,by=wdth),rep(quantile(scale.factor*H$density, 0.97),length(levels(Y))),levels(Y),pos=3,adj=0.5,cex=1.5,col=gray(0.5))
   } else {
     max.density <- max(hist(Y, plot = FALSE)$density)
