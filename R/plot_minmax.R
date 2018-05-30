@@ -30,7 +30,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
   mydir <- My$M[, 3]
   
   if (!is.factor(Y)) {
-    my.y.val <- as.numeric(strsplit(trim(my.y), " ")[[1]][3])
+    my.y.val <- strsplit(trim(my.y), " ")[[1]][3]
     my.y.pct <- ecdf(Y)(my.y.val)
   }
 
@@ -108,7 +108,10 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
     ## Add the category labels
     text(seq(wdth / 2, 1 - wdth / 2, by = wdth), rep(0, length(levels(Y))), levels(Y), pos = 3, adj = 0.5, cex = text.bar, font = 2)
     # text(seq(wdth/2,1-wdth/2,by=wdth),rep(quantile(scale.factor*H$density, 0.97),length(levels(Y))),levels(Y),pos=3,adj=0.5,cex=1.5,col=gray(0.5))
-  } else {
+    if (inherits(cond.tree, "constparty")) {
+      title(main = paste0(names(cond.tree$data)[1], " (Mean = ", my.y.val, ")"), cex.main = text.main)
+    }  
+    } else {
     max.density <- max(hist(Y, plot = FALSE)$density)
     H <- hist(Y[node.index], plot = TRUE, prob = TRUE, main = " ", yaxt = "n", font = 2, cex.axis = text.bar, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
     lines(density(Y[node.index]), lty = 2, lwd = 1.5)
