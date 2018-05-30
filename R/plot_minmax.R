@@ -118,7 +118,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
     if (inherits(cond.tree, "constparty")) {
       title(main = paste0(names(cond.tree$data)[1], " (Mean = ", round(my.y.val, 0), ")"), cex.main = text.main)
     } else {
-      title(main = paste0(names(as.party(cond.tree)$data)[1], " (Mean = ", round(my.y.val, 0), ")"), cex.main = text.main)
+      title(main = paste0(names(as.party(cond.tree)$data)[1], " (Mean = ", round(as.numeric(my.y.val), 0), ")"), cex.main = text.main)
     }
 
     ## Draw in a line for the mean
