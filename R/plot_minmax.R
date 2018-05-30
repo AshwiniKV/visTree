@@ -110,7 +110,9 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
     # text(seq(wdth/2,1-wdth/2,by=wdth),rep(quantile(scale.factor*H$density, 0.97),length(levels(Y))),levels(Y),pos=3,adj=0.5,cex=1.5,col=gray(0.5))
     if (inherits(cond.tree, "constparty")) {
       title(main = paste0(names(cond.tree$data)[1], " (Mean = ", my.y.val, ")"), cex.main = text.main)
-    }  
+    }else {
+      title(main = paste0(names(as.party(cond.tree)$data)[1], " (Mean = ", my.y.val, ")"), cex.main = text.main)
+    } 
     } else {
     max.density <- max(hist(Y, plot = FALSE)$density)
     H <- hist(Y[node.index], plot = TRUE, prob = TRUE, main = " ", yaxt = "n", font = 2, cex.axis = text.bar, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
