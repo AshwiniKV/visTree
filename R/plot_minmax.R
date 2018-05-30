@@ -33,6 +33,11 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
     my.y.val <- strsplit(trim(my.y), " ")[[1]][3]
     my.y.pct <- ecdf(Y)(my.y.val)
   }
+  
+  if (is.factor(Y)) {
+    my.y.val <- strsplit(trim(my.y), " ")[[1]][3]
+    #my.y.pct <- ecdf(Y)(my.y.val)
+  }
 
   var.nms <- rownames(My$M)
   act.vars <- apply(mymat, 1, function(x) {
