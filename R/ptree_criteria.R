@@ -8,7 +8,7 @@
 #' @keywords pathway decision tree
 #' @export
 
-ptree_criteria<- function(newtree, node_id, left) {
+ptree_criteria <- function(newtree, node_id, left) {
   tree <- node_party(newtree)
   node <- as.list(node_party(newtree))
   if (length(nodeapply(tree, ids = nodeids(tree))[[node_id]]) == "0") # Check if this is a terminal node
