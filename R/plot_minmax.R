@@ -123,7 +123,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
     H <- hist(Y[node.index], plot = TRUE, prob = TRUE, main = " ", yaxt = "n", font = 2, cex.axis = text.bar, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
     lines(density(Y[node.index]), lty = 2, lwd = 1.5)
     if (inherits(cond.tree, "constparty")) {
-      title(main = paste0(names(cond.tree$data)[1], " (Mean = ", round(my.y.val, 0), ")"), cex.main = text.main)
+      title(main = paste0(names(cond.tree$data)[1], " (Mean = ", round(as.numeric(my.y.val), 0), ")"), cex.main = text.main)
     } else {
       title(main = paste0(names(as.party(cond.tree)$data)[1], " (Mean = ", round(as.numeric(my.y.val), 0), ")"), cex.main = text.main)
     }
