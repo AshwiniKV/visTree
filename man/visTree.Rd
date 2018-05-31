@@ -4,8 +4,9 @@
 \alias{visTree}
 \title{Visualization of subgroups for decision trees}
 \usage{
-visTree(cond.tree, rng = NULL, interval, color.type, alpha, text.main,
-  text.bar, text.title, text.label, text.axis)
+visTree(cond.tree, rng = NULL, interval = FALSE, color.type = 2,
+  alpha = 0.2, text.main = 2, text.bar = 2, text.title = 2,
+  text.label = 2, text.axis = 2)
 }
 \arguments{
 \item{cond.tree}{Decision tree generated as a party object.}

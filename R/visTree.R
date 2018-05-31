@@ -22,7 +22,7 @@
 #' airct <- partykit::ctree(Ozone ~ ., data = airq)
 #'
 
-visTree <- function(cond.tree, rng=NULL, interval, color.type, alpha, text.main, text.bar, text.title, text.label, text.axis) {
+visTree <- function(cond.tree, rng=NULL, interval = FALSE, color.type = 2, alpha = 0.2, text.main = 2, text.bar = 2, text.title = 2, text.label = 2, text.axis = 2) {
   ## Wrapper function to produce plots from a conditional inference tree
   ## 'range' parameter can restrict plotting to a particular set of nodes
 
