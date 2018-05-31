@@ -121,7 +121,8 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
   } else {
     max.density <- max(hist(Y, plot = FALSE)$density)
     yaxis.limits<- c(range(density(Y[node.index])$y))
-    H <- hist(Y[node.index], plot = TRUE, prob = TRUE, ylim = yaxis.limits, yaxt = "n",main = " ", font = 2, cex.axis = text.bar, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
+    xaxis.limits<-c(range(Y))
+    H <- hist(Y[node.index], plot = TRUE, prob = TRUE, xlim = xaxis.limits, ylim = yaxis.limits, yaxt = "n",main = " ", font = 2, cex.axis = text.bar, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
     lines(density(Y[node.index]), lty = 2, lwd = 1.5)
     if (inherits(cond.tree, "constparty")) {
       title(main = paste0(names(cond.tree$data)[1], " (Mean = ", round(as.numeric(my.y.val), 0), ")"), cex.main = text.main)
