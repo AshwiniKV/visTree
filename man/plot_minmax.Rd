@@ -26,6 +26,8 @@ plot_minmax(My, X, Y, str, color.type, alpha, cond.tree, text.main, text.bar,
 
 \item{text.bar}{Change the size of the text in the horizontal bar and below the bar plot}
 
+\item{text.round}{Round the threshold displayed on the bar}
+
 \item{text.title}{Change the size of the text in the title}
 
 \item{text.axis}{Change the size of the text of axis labels}

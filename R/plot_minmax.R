@@ -13,6 +13,7 @@
 #' @param text.axis Change the size of the text of axis labels
 #' @param text.title Change the size of the text in the title
 #' @param text.bar Change the size of the text in the horizontal bar and below the bar plot
+#' @param text.round Round the threshold displayed on the bar
 #' @param text.label Change the size of the axis annotation
 #' @keywords matrix pathway decision tree
 #' @export

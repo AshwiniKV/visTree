@@ -11,6 +11,7 @@
 #' @param text.axis Change the size of the text of axis labels
 #' @param text.title Change the size of the text in the title
 #' @param text.bar Change the size of the text in the horizontal bar and below the bar plot
+#' @param text.round Round the threshold displayed on the bar
 #' @param text.label Change the size of the axis annotation
 #' @keywords visualization pathway decision tree
 #' @author Ashwini Venkatasubramaniam and Julian Wolfson
@@ -119,7 +120,7 @@ visTree <- function(cond.tree, rng=NULL, interval = FALSE, color.type = 1, alpha
 
   invisible(
     sapply(unlist(structure)[index], function(S) {
-      plot_minmax(minmax_mat(S, colnames(X), Y, interval), X, Y, S, color.type, alpha, cond.tree, text.main, text.bar, text.round,text.title, text.label, text.axis)
+      plot_minmax(minmax_mat(S, colnames(X), Y, interval), X, Y, S, color.type, alpha, cond.tree, text.main, text.bar, text.round, text.title, text.label, text.axis)
     })
   )
 }

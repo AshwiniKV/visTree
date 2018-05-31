@@ -19,6 +19,8 @@ visTree(cond.tree, rng = NULL, interval = FALSE, color.type = 1,
 
 \item{alpha}{Transparency for individual horizonatal colored bars within each subplot. Values between 0 to 1.}
 
+\item{text.round}{Round the threshold displayed on the bar}
+
 \item{text.main}{Change the size of the main titles}
 
 \item{text.bar}{Change the size of the text in the horizontal bar and below the bar plot}
