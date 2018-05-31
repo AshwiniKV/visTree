@@ -22,7 +22,7 @@
 #' airct <- partykit::ctree(Ozone ~ ., data = airq)
 #'
 
-visTree <- function(cond.tree, rng=NULL, interval = FALSE, color.type = 2, alpha = 0.2, text.main = 1.5, text.bar = 1.5, text.title = 1.5, text.label = 1.5, text.axis = 1.5) {
+visTree <- function(cond.tree, rng=NULL, interval = FALSE, color.type = 1, alpha = 0.5, text.round = 1, text.main = 1.5, text.bar = 1.5, text.title = 1.5, text.label = 1.5, text.axis = 1.5) {
   ## Wrapper function to produce plots from a conditional inference tree
   ## 'range' parameter can restrict plotting to a particular set of nodes
 
@@ -119,7 +119,7 @@ visTree <- function(cond.tree, rng=NULL, interval = FALSE, color.type = 2, alpha
 
   invisible(
     sapply(unlist(structure)[index], function(S) {
-      plot_minmax(minmax_mat(S, colnames(X), Y, interval), X, Y, S, color.type, alpha, cond.tree, text.main, text.bar, text.title, text.label, text.axis)
+      plot_minmax(minmax_mat(S, colnames(X), Y, interval), X, Y, S, color.type, alpha, cond.tree, text.main, text.bar, text.round,text.title, text.label, text.axis)
     })
   )
 }

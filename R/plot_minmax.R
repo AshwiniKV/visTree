@@ -22,7 +22,7 @@
 #'
 #'
 
-plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, text.bar, text.title, text.axis, text.label) {
+plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, text.bar, text.round, text.title, text.axis, text.label) {
   ## Main function which plots the bars for each variable along with a histogram of the outcome
   comps <- strsplit(str, ",")
   mymat <- matrix(as.numeric(My$M[, -3]), ncol = 2)
@@ -97,13 +97,13 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
         idx <- 2
       }
       if (My$M[i, 1] != -Inf && My$M[i, 2] == Inf) {
-        text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], ">", round(as.numeric(My$M[i, 1]), 2)), font = 2, cex = text.bar)
+        text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], ">", round(as.numeric(My$M[i, 1]), text.round)), font = 2, cex = text.bar)
       }
       if (My$M[i, 1] != -Inf && My$M[i, 2] != Inf) {
-        text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], "<=", round(as.numeric(My$M[i, 2]), 2), "\n", rownames(My$M)[i], ">", round(as.numeric(My$M[i, 1]), 2)), font = 2, cex = text.bar)
+        text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], "<=", round(as.numeric(My$M[i, 2]), text.round), "\n", rownames(My$M)[i], ">", round(as.numeric(My$M[i, 1]), 2)), font = 2, cex = text.bar)
       }
       if (My$M[i, 1] == -Inf && My$M[i, 2] != Inf) {
-        text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], "<=", round(as.numeric(My$M[i, 2]), 2)), font = 2, cex = text.bar)
+        text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], "<=", round(as.numeric(My$M[i, 2]), text.round)), font = 2, cex = text.bar)
       }
     } ## Label the variables
     j <- j + 1
@@ -122,7 +122,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
     max.density <- max(hist(Y, plot = FALSE)$density)
     yaxis.limits<- c(range(density(Y[node.index])$y))
     xaxis.limits<-c(range(Y))
-    H <- hist(Y[node.index], plot = TRUE, prob = TRUE, xlim = xaxis.limits, ylim = yaxis.limits, yaxt = "n",main = " ", font = 2, cex.axis = text.bar, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
+    H <- hist(Y[node.index], plot = TRUE, prob = TRUE, xlim = xaxis.limits, ylim = yaxis.limits, yaxt = "n",main = " ", font = 2, cex.axis = text.axis, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
     lines(density(Y[node.index]), lty = 2, lwd = 1.5)
     if (inherits(cond.tree, "constparty")) {
       title(main = paste0(names(cond.tree$data)[1], " (Mean = ", round(as.numeric(my.y.val), 0), ")"), cex.main = text.main)
