@@ -9,6 +9,9 @@ Encoding: UTF-8
 Imports: partykit, colorspace
 LazyData: true
 RoxygenNote: 6.0.1
-Suggests: 
+Suggests:
     testthat,
-    covr
+    covr,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
