@@ -100,7 +100,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
         text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], ">", round(as.numeric(My$M[i, 1]), text.round)), font = 2, cex = text.bar)
       }
       if (My$M[i, 1] != -Inf && My$M[i, 2] != Inf) {
-        text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], "<=", round(as.numeric(My$M[i, 2]), text.round), "\n", rownames(My$M)[i], ">", round(as.numeric(My$M[i, 1]), 2)), font = 2, cex = text.bar)
+        text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], "<=", round(as.numeric(My$M[i, 2]), text.round), "\n", rownames(My$M)[i], ">", round(as.numeric(My$M[i, 1]), text.round)), font = 2, cex = text.bar)
       }
       if (My$M[i, 1] == -Inf && My$M[i, 2] != Inf) {
         text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], "<=", round(as.numeric(My$M[i, 2]), text.round)), font = 2, cex = text.bar)
