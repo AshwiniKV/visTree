@@ -23,8 +23,11 @@ This document introduces you to the basic set of tools provided by the package.
 ```{r, fig.show='hold'}
 library(visTree)
 data("blsdata")
-names(blsdata)
 library(partykit)
+```
+
+```{r, fig.show='hold', echo = FALSE, warnings = FALSE}
+#names(blsdata)
 names(blsdata)[c(4, 6, 12, 19, 21, 22, 23, 24, 25)]<-c("skcal", "srvgssb", "edeq15", "freqff","rest.eating", "disinhibition", "hunger", "liking", "wanting")
 newblsdata<-blsdata[,c(7,21, 22,23, 24, 25, 26)]
 ```
