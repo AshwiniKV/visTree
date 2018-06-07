@@ -24,6 +24,7 @@ This document introduces you to the basic set of tools provided by the package.
 library(visTree)
 data("blsdata")
 library(partykit)
+library(rpart)
 ```
 
 ```{r, fig.show='hold', echo = FALSE, warnings = FALSE}
