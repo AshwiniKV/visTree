@@ -13,6 +13,7 @@
 #' @param text.bar Change the size of the text in the horizontal bar and below the bar plot
 #' @param text.round Round the threshold displayed on the bar
 #' @param text.label Change the size of the axis annotation
+#' @param density.line Draw a density line
 #' @keywords visualization pathway decision tree
 #' @author Ashwini Venkatasubramaniam and Julian Wolfson
 #' @export
@@ -23,7 +24,7 @@
 #' airct <- partykit::ctree(Ozone ~ ., data = airq)
 #'
 
-visTree <- function(cond.tree, rng=NULL, interval = FALSE, color.type = 1, alpha = 0.5, text.round = 1, text.main = 1.5, text.bar = 1.5, text.title = 1.5, text.label = 1.5, text.axis = 1.5) {
+visTree <- function(cond.tree, rng=NULL, interval = FALSE, color.type = 1, alpha = 0.5, text.round = 1, text.main = 1.5, text.bar = 1.5, text.title = 1.5, text.label = 1.5, text.axis = 1.5, density.line = TRUE) {
   ## Wrapper function to produce plots from a conditional inference tree
   ## 'range' parameter can restrict plotting to a particular set of nodes
 
@@ -120,7 +121,7 @@ visTree <- function(cond.tree, rng=NULL, interval = FALSE, color.type = 1, alpha
 
   invisible(
     sapply(unlist(structure)[index], function(S) {
-      plot_minmax(minmax_mat(S, colnames(X), Y, interval), X, Y, S, color.type, alpha, cond.tree, text.main, text.bar, text.round, text.title, text.label, text.axis)
+      plot_minmax(minmax_mat(S, colnames(X), Y, interval), X, Y, S, color.type, alpha, cond.tree, text.main, text.bar, text.round, density.line, text.title, text.label, text.axis)
     })
   )
 }

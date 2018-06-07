@@ -15,6 +15,7 @@
 #' @param text.bar Change the size of the text in the horizontal bar and below the bar plot
 #' @param text.round Round the threshold displayed on the bar
 #' @param text.label Change the size of the axis annotation
+#' @param density.line Draw a density line
 #' @keywords matrix pathway decision tree
 #' @export
 #' @importFrom graphics barplot hist par plot polygon segments text title lines layout axis abline
@@ -23,7 +24,7 @@
 #'
 #'
 
-plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, text.bar, text.round, text.title, text.axis, text.label) {
+plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, text.bar, text.round, density.line, text.title, text.axis, text.label) {
   ## Main function which plots the bars for each variable along with a histogram of the outcome
   comps <- strsplit(str, ",")
   mymat <- matrix(as.numeric(My$M[, -3]), ncol = 2)
@@ -124,7 +125,9 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
     yaxis.limits<- c(range(density(Y[node.index])$y))
     xaxis.limits<-c(range(Y))
     H <- hist(Y[node.index], plot = TRUE, prob = TRUE, xlim = xaxis.limits, ylim = yaxis.limits, yaxt = "n",main = " ", font = 2, cex.axis = text.axis, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
+    if(density.line){
     lines(density(Y[node.index]), lty = 2, lwd = 1.5)
+    }
     if (inherits(cond.tree, "constparty")) {
       title(main = paste0(names(cond.tree$data)[1], " (Mean = ", round(as.numeric(my.y.val), 0), ")"), cex.main = text.main)
     } else {

@@ -6,7 +6,8 @@
 \usage{
 visTree(cond.tree, rng = NULL, interval = FALSE, color.type = 1,
   alpha = 0.5, text.round = 1, text.main = 1.5, text.bar = 1.5,
-  text.title = 1.5, text.label = 1.5, text.axis = 1.5)
+  text.title = 1.5, text.label = 1.5, text.axis = 1.5,
+  density.line = TRUE)
 }
 \arguments{
 \item{cond.tree}{Decision tree generated as a party object.}
@@ -30,6 +31,8 @@ visTree(cond.tree, rng = NULL, interval = FALSE, color.type = 1,
 \item{text.label}{Change the size of the axis annotation}
 
 \item{text.axis}{Change the size of the text of axis labels}
+
+\item{density.line}{Draw a density line}
 }
 \description{
 This visualization characterizes subgroups defined by a decision tree structure and identifies the range of covariate values associated with outcome values in each subgroup.
