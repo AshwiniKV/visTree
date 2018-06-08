@@ -82,7 +82,7 @@ visTree(potentialtree, interval = F, color.type = 1, alpha = 0.5, text.main = 1.
 
 ```
 
-### Other Trees, (e.g., Rpart)
+### Other Trees, (e.g., rpart)
 
 ```{r, fig.show='hold', out.width = '98%',fig.align = 'center', fig.height = 9, ,fig.width = 16}
 potentialtree<-rpart(kcal24h0~., data = newblsdata, control = rpart.control(cp = 0.015))
