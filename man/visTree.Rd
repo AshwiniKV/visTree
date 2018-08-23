@@ -5,9 +5,9 @@
 \title{Visualization of subgroups for decision trees}
 \usage{
 visTree(cond.tree, rng = NULL, interval = FALSE, color.type = 1,
-  alpha = 0.5, text.round = 1, text.main = 1.5, text.bar = 1.5,
-  text.title = 1.5, text.label = 1.5, text.axis = 1.5,
-  density.line = TRUE)
+  alpha = 0.5, add.h.axis = TRUE, add.p.axis = TRUE, text.round = 1,
+  text.main = 1.5, text.bar = 1.5, text.title = 1.5, text.label = 1.5,
+  text.axis = 1.5, density.line = TRUE)
 }
 \arguments{
 \item{cond.tree}{Decision tree generated as a party object.}
@@ -19,6 +19,10 @@ visTree(cond.tree, rng = NULL, interval = FALSE, color.type = 1,
 \item{color.type}{Color palettes (rainbow_hcl = 1; heat.colors = 2; terrain.colors = 3; topo.colors = 4 ; cm.colors = 5)}
 
 \item{alpha}{Transparency for individual horizonatal colored bars within each subplot. Values between 0 to 1.}
+
+\item{add.h.axis}{logical. Add axis for the outcome (add.h.axis = TRUE), remove axis for the outcome (add.h.axis = FALSE).}
+
+\item{add.p.axis}{logical. Add axis for the percentiles (add.p.axis = TRUE), remove axis for the percentiles (add.p.axis = FALSE).}
 
 \item{text.round}{Round the threshold displayed on the bar}
 

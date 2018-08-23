@@ -7,6 +7,8 @@
 #' @param interval logical. Continuous (interval = FALSE) and Categorical variable (interval = TRUE).
 #' @param color.type Color palettes (rainbow_hcl = 1; heat.colors = 2; terrain.colors = 3; topo.colors = 4 ; cm.colors = 5)
 #' @param alpha Transparency for individual horizonatal colored bars within each subplot. Values between 0 to 1.
+#' @param add.h.axis logical. Add axis for the outcome (add.h.axis = TRUE), remove axis for the outcome (add.h.axis = FALSE).
+#' @param add.p.axis logical. Add axis for the percentiles (add.p.axis = TRUE), remove axis for the percentiles (add.p.axis = FALSE).
 #' @param text.main Change the size of the main titles
 #' @param text.axis Change the size of the text of axis labels
 #' @param text.title Change the size of the text in the title
@@ -24,7 +26,7 @@
 #' airct <- partykit::ctree(Ozone ~ ., data = airq)
 #'
 
-visTree <- function(cond.tree, rng=NULL, interval = FALSE, color.type = 1, alpha = 0.5, text.round = 1, text.main = 1.5, text.bar = 1.5, text.title = 1.5, text.label = 1.5, text.axis = 1.5, density.line = TRUE) {
+visTree <- function(cond.tree, rng=NULL, interval = FALSE, color.type = 1, alpha = 0.5, add.h.axis = TRUE, add.p.axis = TRUE, text.round = 1, text.main = 1.5, text.bar = 1.5, text.title = 1.5, text.label = 1.5, text.axis = 1.5, density.line = TRUE) {
   ## Wrapper function to produce plots from a conditional inference tree
   ## 'range' parameter can restrict plotting to a particular set of nodes
 
@@ -121,7 +123,7 @@ visTree <- function(cond.tree, rng=NULL, interval = FALSE, color.type = 1, alpha
 
   invisible(
     sapply(unlist(structure)[index], function(S) {
-      plot_minmax(minmax_mat(S, colnames(X), Y, interval), X, Y, S, color.type, alpha, cond.tree, text.main, text.bar, text.round, density.line, text.title, text.label, text.axis)
+      plot_minmax(minmax_mat(S, colnames(X), Y, interval), X, Y, S, color.type, alpha, add.p.axis, add.h.axis, cond.tree, text.main, text.bar, text.round, density.line, text.title, text.label, text.axis)
     })
   )
 }

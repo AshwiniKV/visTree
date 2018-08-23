@@ -8,6 +8,8 @@
 #' @param str Structure of pathway from the root node in the decision tree to each terminal node
 #' @param color.type Color palettes. (rainbow_hcl = 1; heat_hcl = 2; terrain_hcl = 3; sequential_hcl = 4; cm.colors = 5)
 #' @param alpha Transparency of individual horizontal bars. Choose values between 0 to 1.
+#' @param add.h.axis logical. Add axis for the outcome (add.h.axis = TRUE), remove axis for the outcome (add.h.axis = FALSE).
+#' @param add.p.axis logical. Add axis for the percentiles (add.p.axis = TRUE), remove axis for the percentiles (add.p.axis = FALSE).
 #' @param cond.tree Tree as a party object
 #' @param text.main Change the size of the main titles
 #' @param text.axis Change the size of the text of axis labels
@@ -24,7 +26,7 @@
 #'
 #'
 
-plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, text.bar, text.round, density.line, text.title, text.axis, text.label) {
+plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis, cond.tree, text.main, text.bar, text.round, density.line, text.title, text.axis, text.label) {
   ## Main function which plots the bars for each variable along with a histogram of the outcome
   comps <- strsplit(str, ",")
   mymat <- matrix(as.numeric(My$M[, -3]), ncol = 2)
@@ -58,19 +60,19 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
     node.index <- intersect(node.index, c(which(round(X[, i], digit) > round(mymat[i, 1], digit) & round(X[, i], digit) <= round(mymat[i, 2], digit))))
   }
 
-  ## Create the underlying histogram, but don't plot it yet
   if (is.factor(Y)) {
     wdth <- 1 / length(levels(Y))
     H <- hist(as.integer(Y[node.index]) / length(levels(Y)), breaks = seq(0, 1, length.out = length(levels(Y)) + 1), plot = FALSE)
     ## Scale the histogram so it fits vertically on the plot.
     scale.factor <- max.y / max(H$density)
     ## Set up an empty plot of the correct size
+  
     plot(NA, xlim = c(0, 1), ylim = c(0, max.y), ylab = "", xlab = "Percentile", font = 2, main = paste0("Node ID = ", tail(comps[[1]], 1), "(", "n = ", length(node.index), ")"), bty = "n", yaxt = "n", xaxt = "n", cex.axis = text.label, cex.main = text.title)
+    if(add.p.axis == TRUE){
     axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = rep("", 6), tck = 0.05)
     title(main = "Percentile", line = -1.05, cex.main = text.axis)
     axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = c(0, 20, 40, 60, 80, 100), line = -2.5, lwd = 0, cex.axis = text.label, font = 2)
-
-    ## Plot the background histogram
+    }
   } else {
     H <- hist(ecdf(Y)(Y[node.index]), breaks = seq(0, 1, by = 0.1), plot = FALSE)
     ## Scale the histogram so it fits vertically on the plot.
@@ -78,11 +80,12 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
     ## Set up an empty plot of the correct size
     # plot(NA,xlim=c(0,1),ylim=c(0,max.y),ylab="", font = 2,main=paste0("Node ID = ", tail(comps[[1]], 1), " (Mean = ",round(my.y.val, 2),", n = ",length(node.index),")"),bty="n", yaxt = "n", xaxt = "n",cex.axis = text.label, cex.main =text.title)
     plot(NA, xlim = c(0, 1), ylim = c(0, max.y), ylab = "", font = 2, main = paste0("Node ID = ", tail(comps[[1]], 1), " (n = ", length(node.index), ")"), bty = "n", yaxt = "n", xaxt = "n", cex.axis = text.label, cex.main = text.title)
+    if(add.p.axis == TRUE){
     axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = rep("", 6), tck = 0.05)
     title(main = "Percentile", line = -1.05, cex.main = text.axis)
     axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = c(0, 20, 40, 60, 80, 100), line = -2.5, lwd = 0, cex.axis = text.label, font = 2)
     ## Plot the background histogram
-  }
+  }}
 
   ## Now plot the horizontal bars corresponding to each variable.
   j <- 1
@@ -111,7 +114,11 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
     j <- j + 1
   }
   if (is.factor(Y)) {
+    if(add.h.axis == TRUE){
     bp <- barplot(scale.factor * H$density, width = wdth, yaxt = "n", col = rgb(0, 0, 0, 0.15), border = rgb(0, 0, 0, 0.1), add = FALSE, space = 0)
+    }else{
+    bp <- barplot(scale.factor * H$density, width = wdth, yaxt = "n", col = rgb(0, 0, 0, 0.15), xaxt = "n", border = rgb(0, 0, 0, 0.1), add = FALSE, space = 0)
+    }
     ## Add the category labels
     text(seq(wdth / 2, 1 - wdth / 2, by = wdth), rep(0, length(levels(Y))), levels(Y), pos = 3, adj = 0.5, cex = text.bar, font = 2)
     # text(seq(wdth/2,1-wdth/2,by=wdth),rep(quantile(scale.factor*H$density, 0.97),length(levels(Y))),levels(Y),pos=3,adj=0.5,cex=1.5,col=gray(0.5))
@@ -124,7 +131,11 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, cond.tree, text.main, 
     max.density <- max(hist(Y, plot = FALSE)$density)
     yaxis.limits<- c(range(density(Y[node.index])$y))
     xaxis.limits<-c(range(Y))
+    if(add.h.axis == TRUE){
     H <- hist(Y[node.index], plot = TRUE, prob = TRUE, xlim = xaxis.limits, ylim = yaxis.limits, yaxt = "n",main = " ", font = 2, cex.axis = text.axis, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
+    }else{
+    H <- hist(Y[node.index], plot = TRUE, prob = TRUE, xlim = xaxis.limits, ylim = yaxis.limits, yaxt = "n",main = " ", xaxt = "n", font = 2, cex.axis = text.axis, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
+    }
     if(density.line){
     lines(density(Y[node.index]), lty = 2, lwd = 1.5)
     }
