@@ -66,7 +66,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
     ## Scale the histogram so it fits vertically on the plot.
     scale.factor <- max.y / max(H$density)
     ## Set up an empty plot of the correct size
-  
+
     plot(NA, xlim = c(0, 1), ylim = c(0, max.y), ylab = "", xlab = "Percentile", font = 2, main = paste0("Node ID = ", tail(comps[[1]], 1), "(", "n = ", length(node.index), ")"), bty = "n", yaxt = "n", xaxt = "n", cex.axis = text.label, cex.main = text.title)
     if(add.p.axis == TRUE){
     axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = rep("", 6), tck = 0.05)
@@ -94,6 +94,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
     lo <- ifelse(mymat[i, 1] == -Inf, 0, F.x(mymat[i, 1]))
     hi <- ifelse(mymat[i, 2] == Inf, 1, F.x(mymat[i, 2]))
     polygon(c(lo, lo, hi, hi), c(j - 0.5, j + 0.5, j + 0.5, j - 0.5), col = makeTransparent(rbw[i], alpha = alpha), border = NA)
+    #rect(xleft = lo, xright = lo, ytop = hi, ybottom = hi, density = c(j - 0.5, j + 0.5, j + 0.5, j - 0.5), col = makeTransparent(rbw[i], alpha = alpha), border = NA)
 
     if (rownames(My$M)[i] != "sex") {
       if (mymat[i, 2] == Inf) {

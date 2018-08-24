@@ -115,7 +115,7 @@ visTree <- function(cond.tree, rng=NULL, interval = FALSE, color.type = 1, alpha
   } else {
     index <- min(rng):min(max(rng), length(unlist(structure)))
   } ## Should probably do some range checking
-  if (length(index) > 10) stop("Number of subgroups is too large")
+  if (length(index) > 10) stop("Number of subgroups exceeds ten")
 
   par(mfrow = c(4, ceiling(length(index) / 2)), mar = c(2, 1, 3, 1))
   number <- length(index) * 2 + (length(index) * 2) %% 4
