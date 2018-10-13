@@ -56,7 +56,7 @@ data("blsdata")
 ### Continuous outcome 
 
 
-```{r, fig.show='hold', out.width = '90%',fig.align = 'center', fig.height = 9, ,fig.width = 12}
+```{r, fig.show='hide', out.width = '90%',fig.align = 'center', fig.height = 9, ,fig.width = 12}
 potentialtree<-ctree(kcal24h0~., data = newblsdata, control = ctree_control(mincriterion = 0.95))
 visTree(potentialtree, text.axis = 1.3, text.label = 1.25,text.bar = 1.36, color.type = 1, alpha = 0.5)
 ```
@@ -69,13 +69,13 @@ blsdataedit$bin<-0
 blsdataedit$bin<-cut(blsdata$kcal24h0, unique(quantile(blsdata$kcal24h0)), include.lowest = TRUE, dig.lab = 4)
 ```
 
-```{r, fig.show='hold', out.width = '90%',fig.align = 'center', fig.height = 9, ,fig.width = 12}
+```{r, fig.show='hide', out.width = '90%',fig.align = 'center', fig.height = 9, ,fig.width = 12}
 potentialtree<-ctree(bin~hunger+rrvfood+resteating+liking+wanting+disinhibition, data = blsdataedit, control = ctree_control(mincriterion = 0.85))
 visTree(potentialtree, interval = T,  color.type = 1, alpha = 0.6)
 ```
 
 ### Repeated Splits 
-```{r, fig.show='hold', out.width = '95%',fig.align = 'center', fig.height = 9, ,fig.width = 14}
+```{r, fig.show='hide', out.width = '95%',fig.align = 'center', fig.height = 9, ,fig.width = 14}
 potentialtree<-ctree(kcal24h0~skcal+hunger+rrvfood+resteating+liking+wanting+age, data = blsdata, control = ctree_control(mincriterion = 0.95))
 visTree(potentialtree, interval = F, color.type = 1, alpha = 0.5, text.main = 1.4, text.axis = 1.3, text.bar = 1.05, text.label = 1.15, text.title = 2)
 
@@ -83,7 +83,7 @@ visTree(potentialtree, interval = F, color.type = 1, alpha = 0.5, text.main = 1.
 
 ### Other Trees, (e.g., rpart)
 
-```{r, fig.show='hold', out.width = '98%',fig.align = 'center', fig.height = 9, ,fig.width = 16}
+```{r, fig.show='hide', out.width = '98%',fig.align = 'center', fig.height = 9, ,fig.width = 16}
 potentialtree<-rpart(kcal24h0~., data = newblsdata, control = rpart.control(cp = 0.015))
 visTree(potentialtree, text.bar = 1.05, text.label = 1.15, text.round = 1)
 ```

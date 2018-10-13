@@ -6,7 +6,7 @@ Description: This package provides a visualization for characterizing subgroups 
 Depends: R (>= 3.4.0)
 License: GPL-3
 Encoding: UTF-8
-Imports: partykit, colorspace
+Imports: partykit, rpart, colorspace
 LazyData: true
 RoxygenNote: 6.0.1
 Suggests:
