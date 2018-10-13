@@ -27,18 +27,18 @@ index_left <- nodeids(cond.tree1)[!choose_inner][2]
 index_right <- nodeids(cond.tree1)[!choose_inner][5]
 
 test_that("Prediction_terminal node", {
-  expect_identical(ptree_y(cond.tree1, first_termnode), term_mean)
+  expect_equal(ptree_y(cond.tree1, first_termnode), term_mean)
 })
 
 test_that("Inner nodes - Left split", {
-  expect_identical(ptree_left(cond.tree1, 1), nodeids(cond.tree1)[index_left])
+  expect_equal(ptree_left(cond.tree1, 1), nodeids(cond.tree1)[index_left])
 })
 
 test_that("Inner nodes - Right split", {
-  expect_identical(ptree_right(cond.tree1, 1), nodeids(cond.tree1)[index_right])
+  expect_equal(ptree_right(cond.tree1, 1), nodeids(cond.tree1)[index_right])
 })
 
 first_split <- strsplit(partykit:::.list.rules.party(cond.tree1)[1], " & ")[[1]][1]
 test_that("Split_node", {
-  expect_identical(ptree_criteria(cond.tree1, 1, TRUE), first_split)
+  expect_equal(ptree_criteria(cond.tree1, 1, TRUE), first_split)
 })
