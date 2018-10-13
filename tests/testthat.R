@@ -128,3 +128,7 @@ myy<-as.numeric(strsplit(My$y, " ")[[1]][3])
 test_that("minmax", {
   expect_equal(as.numeric(strsplit(minmax_mat(S, colnames(X), Y, FALSE)$y, " ")[[1]][3]), term_mean)
 })
+
+test_that("Pathnode",{
+expect_equal(as.numeric(strsplit(strsplit(path_node(cond.tree1, 4), ",")[[1]][4], " ")[[1]][3]), term_mean)
+})
