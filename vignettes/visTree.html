@@ -12,7 +12,7 @@
 
 <meta name="author" content="Ashwini Venkatasubramaniam and Julian Wolfson" />
 
-<meta name="date" content="2018-10-13" />
+<meta name="date" content="2018-10-16" />
 
 <title>visTree: visualization of subgroups for decision trees</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">visTree: visualization of subgroups for decision trees</h1>
 <h4 class="author"><em>Ashwini Venkatasubramaniam and Julian Wolfson</em></h4>
-<h4 class="date"><em>2018-10-13</em></h4>
+<h4 class="date"><em>2018-10-16</em></h4>
 
 
 <div id="TOC">
@@ -84,8 +84,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="#other-trees-e.g.-rpart">Other Trees, (e.g., rpart)</a></li>
 </ul></li>
 <li><a href="#display-controls">Display controls</a><ul>
-<li><a href="#color-scheme-and-transparency">Color scheme and transparency</a></li>
 <li><a href="#text">Text</a></li>
+<li><a href="#rounding-the-displayed-split-criterion">Rounding the displayed split criterion</a></li>
+<li><a href="#transparency">Transparency</a></li>
 <li><a href="#density-curve">Density curve</a></li>
 </ul></li>
 </ul>
@@ -97,54 +98,72 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The GitHub version:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install_github(&quot;AshwiniKV/visTree&quot;)</span>
 <span class="kw">library</span>(visTree)</code></pre></div>
-<p>Load the BLSdata for the given examples and other relevant packages used for drawing trees.</p>
+<p>Load the BLSdata for the given examples and other relevant packages used for drawing trees. For this visTree package, the relevant packages are partykit and rpart.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;blsdata&quot;</span>)
 <span class="kw">library</span>(partykit)
-<span class="co">#&gt; Warning: package 'partykit' was built under R version 3.5.1</span>
 <span class="co">#&gt; Loading required package: grid</span>
 <span class="co">#&gt; Loading required package: libcoin</span>
 <span class="co">#&gt; Loading required package: mvtnorm</span>
-<span class="kw">library</span>(rpart)
-<span class="co">#&gt; Warning: package 'rpart' was built under R version 3.5.1</span></code></pre></div>
-<p>This document introduces you to the set of tools provided by the visTree package.</p>
+<span class="kw">library</span>(rpart)</code></pre></div>
+<p>This document introduces you to the set of tools provided by the visTree package and provides examples of different scenarios that the package is able to developed to accommodate.</p>
 </div>
 <div id="example-dataset" class="section level2">
 <h2>Example dataset</h2>
+<p>The example scenarios are illustrated by applications to the box lunch study dataset. This dataset is available within the package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;blsdata&quot;</span>)</code></pre></div>
 </div>
 <div id="outcome-type" class="section level2">
 <h2>Outcome type</h2>
+<p>The visTree package is able to accommodate both continuous and categorical outcomes. An option interval = TRUE is utilised within the visTree function to display the relevant graphical output for a continuous outcome rather than a categorical outcome.</p>
 <div id="continuous-outcome" class="section level3">
 <h3>Continuous outcome</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">ctree</span>(kcal24h0<span class="op">~</span>., <span class="dt">data =</span> newblsdata, <span class="dt">control =</span> <span class="kw">ctree_control</span>(<span class="dt">mincriterion =</span> <span class="fl">0.95</span>))
-<span class="kw">visTree</span>(potentialtree, <span class="dt">text.axis =</span> <span class="fl">1.3</span>, <span class="dt">text.label =</span> <span class="fl">1.25</span>,<span class="dt">text.bar =</span> <span class="fl">1.36</span>, <span class="dt">color.type =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</code></pre></div>
+<span class="kw">visTree</span>(potentialtree,  <span class="dt">color.type =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</code></pre></div>
 </div>
 <div id="categorical-outcome" class="section level3">
 <h3>Categorical outcome</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">ctree</span>(bin<span class="op">~</span>hunger<span class="op">+</span>rrvfood<span class="op">+</span>resteating<span class="op">+</span>liking<span class="op">+</span>wanting<span class="op">+</span>disinhibition, <span class="dt">data =</span> blsdataedit, <span class="dt">control =</span> <span class="kw">ctree_control</span>(<span class="dt">mincriterion =</span> <span class="fl">0.85</span>))
-<span class="kw">visTree</span>(potentialtree, <span class="dt">interval =</span> T,  <span class="dt">color.type =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>)</code></pre></div>
+<span class="kw">visTree</span>(potentialtree, <span class="dt">interval =</span> T)</code></pre></div>
 </div>
 <div id="repeated-splits" class="section level3">
 <h3>Repeated Splits</h3>
+<p>This series of plots describe the splits leading to each subgroup and need not necessarily be composed of different variable. The splits over multiple level can be performed on the same variable and the horizontal bars display these differences.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">ctree</span>(kcal24h0<span class="op">~</span>skcal<span class="op">+</span>hunger<span class="op">+</span>rrvfood<span class="op">+</span>resteating<span class="op">+</span>liking<span class="op">+</span>wanting<span class="op">+</span>age, <span class="dt">data =</span> blsdata, <span class="dt">control =</span> <span class="kw">ctree_control</span>(<span class="dt">mincriterion =</span> <span class="fl">0.95</span>))
-<span class="kw">visTree</span>(potentialtree, <span class="dt">interval =</span> F, <span class="dt">color.type =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>, <span class="dt">text.main =</span> <span class="fl">1.4</span>, <span class="dt">text.axis =</span> <span class="fl">1.3</span>, <span class="dt">text.bar =</span> <span class="fl">1.05</span>, <span class="dt">text.label =</span> <span class="fl">1.15</span>, <span class="dt">text.title =</span> <span class="dv">2</span>)</code></pre></div>
+<span class="kw">visTree</span>(potentialtree)</code></pre></div>
 </div>
 <div id="other-trees-e.g.-rpart" class="section level3">
 <h3>Other Trees, (e.g., rpart)</h3>
+<p>The examples in this document have so far focussed on scenarios described over conditional inference trees. However, this package is able to accommodate other types of decision tree structures and classes such as CART (implemented by the rpart package). The visTree package depends on the partykit package to</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">rpart</span>(kcal24h0<span class="op">~</span>., <span class="dt">data =</span> newblsdata, <span class="dt">control =</span> <span class="kw">rpart.control</span>(<span class="dt">cp =</span> <span class="fl">0.015</span>))
-<span class="kw">visTree</span>(potentialtree, <span class="dt">text.bar =</span> <span class="fl">1.05</span>, <span class="dt">text.label =</span> <span class="fl">1.15</span>, <span class="dt">text.round =</span> <span class="dv">1</span>)</code></pre></div>
+<span class="kw">visTree</span>(potentialtree)</code></pre></div>
 </div>
 </div>
 <div id="display-controls" class="section level2">
 <h2>Display controls</h2>
-<div id="color-scheme-and-transparency" class="section level3">
-<h3>Color scheme and transparency</h3>
-</div>
 <div id="text" class="section level3">
 <h3>Text</h3>
+<p>The controls within the visTree function can be utilised to specify different text sizes for the title of the subplots (text.title), title of the histogram (text.main), axis (text.axis), labels for the axis (text.labels) and the splits placed on the horizontal bars (text.bar).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">ctree</span>(kcal24h0<span class="op">~</span>skcal<span class="op">+</span>hunger<span class="op">+</span>rrvfood<span class="op">+</span>resteating<span class="op">+</span>liking<span class="op">+</span>wanting<span class="op">+</span>age, <span class="dt">data =</span> blsdata, <span class="dt">control =</span> <span class="kw">ctree_control</span>(<span class="dt">mincriterion =</span> <span class="fl">0.95</span>))
+<span class="kw">visTree</span>(potentialtree, <span class="dt">text.label =</span> <span class="fl">1.5</span>, <span class="dt">text.title =</span> <span class="fl">1.5</span>, <span class="dt">text.bar =</span> <span class="fl">1.5</span>, <span class="dt">text.axis =</span> <span class="fl">1.5</span>, <span class="dt">text.main =</span> <span class="fl">1.5</span>)</code></pre></div>
+</div>
+<div id="rounding-the-displayed-split-criterion" class="section level3">
+<h3>Rounding the displayed split criterion</h3>
+<p>In addition to changing the size of the text placed on the bars, the number of decimal places can also be specified for the splitting criterions displayed on the horizontal bars. This implemented using the option text.round in the visTree function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">ctree</span>(kcal24h0<span class="op">~</span>skcal<span class="op">+</span>hunger<span class="op">+</span>rrvfood<span class="op">+</span>resteating<span class="op">+</span>liking<span class="op">+</span>wanting<span class="op">+</span>age, <span class="dt">data =</span> blsdata, <span class="dt">control =</span> <span class="kw">ctree_control</span>(<span class="dt">mincriterion =</span> <span class="fl">0.95</span>))
+<span class="kw">visTree</span>(potentialtree, <span class="dt">text.round=</span> <span class="dv">3</span>, <span class="dt">text.bar =</span> <span class="fl">1.1</span>)</code></pre></div>
+</div>
+<div id="transparency" class="section level3">
+<h3>Transparency</h3>
+<p>The transparency of the horizontal bars in each of the subplots can also be modified.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">ctree</span>(kcal24h0<span class="op">~</span>skcal<span class="op">+</span>hunger<span class="op">+</span>rrvfood<span class="op">+</span>resteating<span class="op">+</span>liking<span class="op">+</span>wanting<span class="op">+</span>age, <span class="dt">data =</span> blsdata, <span class="dt">control =</span> <span class="kw">ctree_control</span>(<span class="dt">mincriterion =</span> <span class="fl">0.95</span>))
+<span class="kw">visTree</span>(potentialtree, <span class="dt">alpha =</span> <span class="fl">0.8</span>)
+<span class="kw">visTree</span>(potentialtree, <span class="dt">alpha =</span> <span class="fl">0.3</span>)</code></pre></div>
 </div>
 <div id="density-curve" class="section level3">
 <h3>Density curve</h3>
+<p>The visualization tool accommodates both continuous and categorical data. For continuous data, a density curve over the histogram can also be placed or removed from the lower part of the sub-plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">ctree</span>(kcal24h0<span class="op">~</span>skcal<span class="op">+</span>hunger<span class="op">+</span>rrvfood<span class="op">+</span>resteating<span class="op">+</span>liking<span class="op">+</span>wanting<span class="op">+</span>age, <span class="dt">data =</span> blsdata, <span class="dt">control =</span> <span class="kw">ctree_control</span>(<span class="dt">mincriterion =</span> <span class="fl">0.95</span>))
+<span class="kw">visTree</span>(potentialtree, <span class="dt">density.line =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </div>
 </div>
 
