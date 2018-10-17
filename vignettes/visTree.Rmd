@@ -80,17 +80,16 @@ visTree(potentialtree, interval = T)
 
 ### Repeated Splits 
 
-This series of plots describe the splits leading to each subgroup and need not necessarily be composed of different variable. The splits over multiple level can be performed on the same variable and the horizontal bars display these differences. 
+This series of plots describe the splits leading to each subgroup and the splits need not necessarily be composed of different variables. The splits over multiple levels can be performed on the same variable and these are are summarised such that the resulting intervals are readily interpretable. The horizontal bars display these splits and the relevant criterions. 
 
 ```{r, fig.show='hide', out.width = '95%',fig.align = 'center', fig.height = 9, ,fig.width = 14, warnings = FALSE}
 potentialtree<-ctree(kcal24h0~skcal+hunger+rrvfood+resteating+liking+wanting+age, data = blsdata, control = ctree_control(mincriterion = 0.95))
 visTree(potentialtree)
-
 ```
 
 ### Other Trees, (e.g., rpart)
 
-The examples in this document have so far focussed on scenarios described over conditional inference trees. However, this package is able to accommodate other types of decision tree structures and classes such as CART (implemented by the rpart package).   
+The examples in this document have so far focussed on scenarios described over conditional inference trees. The conditional inference tree is implemented as an object of class party using the partykit package. However, the visTree package is also able to accommodate other types of decision tree structures such as CART (implemented by the rpart package); CART is generated as an object of class rpart by the rpart package.   
 
 ```{r, fig.show='hide', out.width = '98%',fig.align = 'center', fig.height = 9, ,fig.width = 16, warnings = FALSE}
 potentialtree<-rpart(kcal24h0~., data = newblsdata, control = rpart.control(cp = 0.015))
@@ -101,24 +100,36 @@ visTree(potentialtree)
 
 ### Text
 
-The controls within the visTree function can be utilised to specify different text sizes for the title of the subplots (text.title), title of the histogram (text.main), axis (text.axis), labels for the axis (text.labels) and the splits placed on the horizontal bars (text.bar). 
+The controls within the visTree function can be utilised to specify different text sizes for the title of the subplots (text.title), title of the histogram (text.main), axis labels placed at the tickmarks (text.axis), title labels for the axis (text.labels) and the splits placed on the horizontal bars (text.bar). 
 
 ```{r, fig.show='hide', out.width = '98%',fig.align = 'center', fig.height = 9, ,fig.width = 16, warnings = FALSE}
 potentialtree<-ctree(kcal24h0~skcal+hunger+rrvfood+resteating+liking+wanting+age, data = blsdata, control = ctree_control(mincriterion = 0.95))
 visTree(potentialtree, text.label = 1.5, text.title = 1.5, text.bar = 1.5, text.axis = 1.5, text.main = 1.5)
 ```
 
-### Rounding the displayed split criterion
+### Axis 
 
-In addition to changing the size of the text placed on the bars, the number of decimal places can also be specified for the splitting criterions displayed on the horizontal bars. This implemented using the option text.round in the visTree function.
+The axis for each subplot within the visualisation is placed above the horizontal colored bars for the percentiles of relevant covariates and below the histogram/bar chart for the outcome values. Both these axes can be removed or placed as necessary using the options add.h.axis (associated with the colored bars) and add.p.axis (associated with the percentiles) within the visTree function. 
 
 ```{r, fig.show='hide', out.width = '98%',fig.align = 'center', fig.height = 9, ,fig.width = 16, warnings = FALSE}
+potentialtree<-ctree(kcal24h0~skcal+hunger+rrvfood+resteating+liking+wanting+age, data = blsdata, control = ctree_control(mincriterion = 0.95))
+visTree(potentialtree, add.h.axis = FALSE)
+visTree(potentialtree, add.p.axis = FALSE)
+```
+
+### Rounding the displayed split criterion
+
+In addition to changing the size of the text placed on the bars, the number of decimal places can also be specified for the splitting criterions that are displayed on the horizontal bars. This is implemented using the option text.round in the visTree function.
+
+```{r, fig.show='hide', out.width = '98%', fig.align = 'center', fig.height = 9, ,fig.width = 16, warnings = FALSE}
 potentialtree<-ctree(kcal24h0~skcal+hunger+rrvfood+resteating+liking+wanting+age, data = blsdata, control = ctree_control(mincriterion = 0.95))
 visTree(potentialtree, text.round= 3, text.bar = 1.1)
 ```
 
 ### Transparency
-The transparency of the horizontal bars in each of the subplots can also be modified by specifying a value between 0 and 1 for alpha in the visTree function. As values get closer to 1, the opaqueness of the colored bars increases. 
+
+The transparency of the horizontal bars in each of the subplots can also be modified by specifying a value between 0 and 1 for alpha in the visTree function. As values get closer to 1, the opaqueness of the horizontal colored bars increases. 
+
 ```{r, fig.show='hide', out.width = '98%',fig.align = 'center', fig.height = 9, ,fig.width = 16, warnings = FALSE}
 potentialtree<-ctree(kcal24h0~skcal+hunger+rrvfood+resteating+liking+wanting+age, data = blsdata, control = ctree_control(mincriterion = 0.95))
 visTree(potentialtree, alpha = 0.8)
@@ -126,7 +137,9 @@ visTree(potentialtree, alpha = 0.3)
 ```
 
 ### Density curve
-The visualization tool accommodates both continuous and categorical data. For continuous data,  a density curve over the histogram can also be placed or removed from the lower part of the sub-plot.
+
+The visualization tool accommodates continuous and categorical data. For continuous data, a density curve over the histogram can also be placed or removed from the lower part of the sub-plot.
+
 ```{r, fig.show='hide', out.width = '98%',fig.align = 'center', fig.height = 9, ,fig.width = 16, warnings = FALSE}
 potentialtree<-ctree(kcal24h0~skcal+hunger+rrvfood+resteating+liking+wanting+age, data = blsdata, control = ctree_control(mincriterion = 0.95))
 visTree(potentialtree, density.line = FALSE)

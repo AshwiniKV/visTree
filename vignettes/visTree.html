@@ -12,7 +12,7 @@
 
 <meta name="author" content="Ashwini Venkatasubramaniam and Julian Wolfson" />
 
-<meta name="date" content="2018-10-16" />
+<meta name="date" content="2018-10-17" />
 
 <title>visTree: visualization of subgroups for decision trees</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">visTree: visualization of subgroups for decision trees</h1>
 <h4 class="author"><em>Ashwini Venkatasubramaniam and Julian Wolfson</em></h4>
-<h4 class="date"><em>2018-10-16</em></h4>
+<h4 class="date"><em>2018-10-17</em></h4>
 
 
 <div id="TOC">
@@ -85,6 +85,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li><a href="#display-controls">Display controls</a><ul>
 <li><a href="#text">Text</a></li>
+<li><a href="#axis">Axis</a></li>
 <li><a href="#rounding-the-displayed-split-criterion">Rounding the displayed split criterion</a></li>
 <li><a href="#transparency">Transparency</a></li>
 <li><a href="#density-curve">Density curve</a></li>
@@ -127,13 +128,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="repeated-splits" class="section level3">
 <h3>Repeated Splits</h3>
-<p>This series of plots describe the splits leading to each subgroup and need not necessarily be composed of different variable. The splits over multiple level can be performed on the same variable and the horizontal bars display these differences.</p>
+<p>This series of plots describe the splits leading to each subgroup and the splits need not necessarily be composed of different variables. The splits over multiple levels can be performed on the same variable and these are are summarised such that the resulting intervals are readily interpretable. The horizontal bars display these splits and the relevant criterions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">ctree</span>(kcal24h0<span class="op">~</span>skcal<span class="op">+</span>hunger<span class="op">+</span>rrvfood<span class="op">+</span>resteating<span class="op">+</span>liking<span class="op">+</span>wanting<span class="op">+</span>age, <span class="dt">data =</span> blsdata, <span class="dt">control =</span> <span class="kw">ctree_control</span>(<span class="dt">mincriterion =</span> <span class="fl">0.95</span>))
 <span class="kw">visTree</span>(potentialtree)</code></pre></div>
 </div>
 <div id="other-trees-e.g.-rpart" class="section level3">
 <h3>Other Trees, (e.g., rpart)</h3>
-<p>The examples in this document have so far focussed on scenarios described over conditional inference trees. However, this package is able to accommodate other types of decision tree structures and classes such as CART (implemented by the rpart package). The visTree package depends on the partykit package to</p>
+<p>The examples in this document have so far focussed on scenarios described over conditional inference trees. The conditional inference tree is implemented as an object of class party using the partykit package. However, the visTree package is also able to accommodate other types of decision tree structures such as CART (implemented by the rpart package) that is generated as an object of class rpart by the rpart package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">rpart</span>(kcal24h0<span class="op">~</span>., <span class="dt">data =</span> newblsdata, <span class="dt">control =</span> <span class="kw">rpart.control</span>(<span class="dt">cp =</span> <span class="fl">0.015</span>))
 <span class="kw">visTree</span>(potentialtree)</code></pre></div>
 </div>
@@ -142,26 +143,33 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2>Display controls</h2>
 <div id="text" class="section level3">
 <h3>Text</h3>
-<p>The controls within the visTree function can be utilised to specify different text sizes for the title of the subplots (text.title), title of the histogram (text.main), axis (text.axis), labels for the axis (text.labels) and the splits placed on the horizontal bars (text.bar).</p>
+<p>The controls within the visTree function can be utilised to specify different text sizes for the title of the subplots (text.title), title of the histogram (text.main), axis (text.axis), title labels for the axis (text.labels) and the splits placed on the horizontal bars (text.bar).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">ctree</span>(kcal24h0<span class="op">~</span>skcal<span class="op">+</span>hunger<span class="op">+</span>rrvfood<span class="op">+</span>resteating<span class="op">+</span>liking<span class="op">+</span>wanting<span class="op">+</span>age, <span class="dt">data =</span> blsdata, <span class="dt">control =</span> <span class="kw">ctree_control</span>(<span class="dt">mincriterion =</span> <span class="fl">0.95</span>))
 <span class="kw">visTree</span>(potentialtree, <span class="dt">text.label =</span> <span class="fl">1.5</span>, <span class="dt">text.title =</span> <span class="fl">1.5</span>, <span class="dt">text.bar =</span> <span class="fl">1.5</span>, <span class="dt">text.axis =</span> <span class="fl">1.5</span>, <span class="dt">text.main =</span> <span class="fl">1.5</span>)</code></pre></div>
 </div>
+<div id="axis" class="section level3">
+<h3>Axis</h3>
+<p>The axis for each subplot within the visualisation is placed above the horizontal colored bars for the percentiles of relevant covariates and below the histogram/bar chart for the outcome values. Both these axes can be removed or placed as necessary using the options add.h.axis (associated with the colored bars) and add.p.axis (associated with the percentiles) within the visTree function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">ctree</span>(kcal24h0<span class="op">~</span>skcal<span class="op">+</span>hunger<span class="op">+</span>rrvfood<span class="op">+</span>resteating<span class="op">+</span>liking<span class="op">+</span>wanting<span class="op">+</span>age, <span class="dt">data =</span> blsdata, <span class="dt">control =</span> <span class="kw">ctree_control</span>(<span class="dt">mincriterion =</span> <span class="fl">0.95</span>))
+<span class="kw">visTree</span>(potentialtree, <span class="dt">add.h.axis =</span> <span class="ot">FALSE</span>)
+<span class="kw">visTree</span>(potentialtree, <span class="dt">add.p.axis =</span> <span class="ot">FALSE</span>)</code></pre></div>
+</div>
 <div id="rounding-the-displayed-split-criterion" class="section level3">
 <h3>Rounding the displayed split criterion</h3>
-<p>In addition to changing the size of the text placed on the bars, the number of decimal places can also be specified for the splitting criterions displayed on the horizontal bars. This implemented using the option text.round in the visTree function.</p>
+<p>In addition to changing the size of the text placed on the bars, the number of decimal places can also be specified for the splitting criterions that are displayed on the horizontal bars. This is implemented using the option text.round in the visTree function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">ctree</span>(kcal24h0<span class="op">~</span>skcal<span class="op">+</span>hunger<span class="op">+</span>rrvfood<span class="op">+</span>resteating<span class="op">+</span>liking<span class="op">+</span>wanting<span class="op">+</span>age, <span class="dt">data =</span> blsdata, <span class="dt">control =</span> <span class="kw">ctree_control</span>(<span class="dt">mincriterion =</span> <span class="fl">0.95</span>))
 <span class="kw">visTree</span>(potentialtree, <span class="dt">text.round=</span> <span class="dv">3</span>, <span class="dt">text.bar =</span> <span class="fl">1.1</span>)</code></pre></div>
 </div>
 <div id="transparency" class="section level3">
 <h3>Transparency</h3>
-<p>The transparency of the horizontal bars in each of the subplots can also be modified.</p>
+<p>The transparency of the horizontal bars in each of the subplots can also be modified by specifying a value between 0 and 1 for alpha in the visTree function. As values get closer to 1, the opaqueness of the horizontal colored bars increases.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">ctree</span>(kcal24h0<span class="op">~</span>skcal<span class="op">+</span>hunger<span class="op">+</span>rrvfood<span class="op">+</span>resteating<span class="op">+</span>liking<span class="op">+</span>wanting<span class="op">+</span>age, <span class="dt">data =</span> blsdata, <span class="dt">control =</span> <span class="kw">ctree_control</span>(<span class="dt">mincriterion =</span> <span class="fl">0.95</span>))
 <span class="kw">visTree</span>(potentialtree, <span class="dt">alpha =</span> <span class="fl">0.8</span>)
 <span class="kw">visTree</span>(potentialtree, <span class="dt">alpha =</span> <span class="fl">0.3</span>)</code></pre></div>
 </div>
 <div id="density-curve" class="section level3">
 <h3>Density curve</h3>
-<p>The visualization tool accommodates both continuous and categorical data. For continuous data, a density curve over the histogram can also be placed or removed from the lower part of the sub-plot.</p>
+<p>The visualization tool accommodates continuous and categorical data. For continuous data, a density curve over the histogram can also be placed or removed from the lower part of the sub-plot.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">potentialtree&lt;-<span class="kw">ctree</span>(kcal24h0<span class="op">~</span>skcal<span class="op">+</span>hunger<span class="op">+</span>rrvfood<span class="op">+</span>resteating<span class="op">+</span>liking<span class="op">+</span>wanting<span class="op">+</span>age, <span class="dt">data =</span> blsdata, <span class="dt">control =</span> <span class="kw">ctree_control</span>(<span class="dt">mincriterion =</span> <span class="fl">0.95</span>))
 <span class="kw">visTree</span>(potentialtree, <span class="dt">density.line =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </div>
