@@ -1,6 +1,6 @@
 #' Generate individual subplots within the graphical visualization
 #'
-#' A series of sub-plots that correspond to individual terminal nodes within the decision tree structure. Each subplot is composed of a histogram in the background that shows the distribution of the outcome for individuals in this subgroup and colored horizontal bars which summarize the set of covariate splits used to define the subgroup.
+#' This function is utilised to generate a series of sub-plots, where each subplot corresponds to individual terminal nodes within the decision tree structure. Each subplot is composed of a histogram in the background that shows the distribution of the outcome for individuals in this subgroup and colored horizontal bars which summarize the set of covariate splits used to define the subgroup.
 #'
 #' @param My A matrix to define the split points within the decision tree structure
 #' @param X Covariates
