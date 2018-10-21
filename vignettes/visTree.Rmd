@@ -36,6 +36,7 @@ Load the BLSdata for the given examples and other relevant packages used for dra
 data("blsdata")
 library(partykit)
 library(rpart)
+library(colorspace)
 ```
 
 ```{r, fig.show='hold', echo = FALSE, warnings = FALSE}
