@@ -50,7 +50,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
 
   max.y <- sum(act.vars) + 1
   # rbw <- cm.colors(n=nrow(mymat))
-  colors <- list(colorspace::rainbow_hcl(n = nrow(mymat)), colorspace::heat_hcl(n = nrow(mymat)), colorspace::terrain_hcl(n = nrow(mymat)), colorspace::sequential_hcl(n = nrow(mymat)), cm.colors(n = nrow(mymat)))
+  colors <- list(colorspace::rainbow_hcl(n = nrow(mymat)), colorspace::heat_hcl(n = nrow(mymat)), colorspace::terrain_hcl(n = nrow(mymat)), colorspace::sequential_hcl(n = nrow(mymat)), colorspaces::diverge_hcl(n = nrow(mymat)))
   rbw <- colors[[color.type]]
 
   ## Find the y's which "belong" in this node
