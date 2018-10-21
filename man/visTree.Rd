@@ -16,7 +16,7 @@ visTree(cond.tree, rng = NULL, interval = FALSE, color.type = 1,
 
 \item{interval}{logical. Continuous (interval = FALSE) and Categorical variable (interval = TRUE).}
 
-\item{color.type}{Color palettes (rainbow_hcl = 1; heat.colors = 2; terrain.colors = 3; topo.colors = 4 ; cm.colors = 5)}
+\item{color.type}{Color palettes (rainbow_hcl = 1; heat_hcl = 2; terrain_hcl = 3; sequential_hcl = 4 ; diverge_hcl = 5)}
 
 \item{alpha}{Transparency for individual horizonatal colored bars within each subplot. Values between 0 to 1.}
 

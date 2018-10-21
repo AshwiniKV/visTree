@@ -6,7 +6,7 @@
 #' @param X Covariates
 #' @param Y Response variable
 #' @param str Structure of pathway from the root node in the decision tree to each terminal node
-#' @param color.type Color palettes. (rainbow_hcl = 1; heat_hcl = 2; terrain_hcl = 3; sequential_hcl = 4; cm.colors = 5)
+#' @param color.type Color palettes. (rainbow_hcl = 1; heat_hcl = 2; terrain_hcl = 3; sequential_hcl = 4; diverge_hcl = 5)
 #' @param alpha Transparency of individual horizontal bars. Choose values between 0 to 1.
 #' @param add.h.axis logical. Add axis for the outcome (add.h.axis = TRUE), remove axis for the outcome (add.h.axis = FALSE).
 #' @param add.p.axis logical. Add axis for the percentiles (add.p.axis = TRUE), remove axis for the percentiles (add.p.axis = FALSE).
