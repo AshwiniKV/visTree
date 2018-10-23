@@ -1,6 +1,8 @@
-# visTree 0.5.1 (Oct 23rd 2018)
+# visTree 0.8.1 (Oct 23rd 2018)
 
 ### Third Version
+
+Ready to send to CRAN.
 
 # visTree 0.2.1 (May 30th 2018)
 
