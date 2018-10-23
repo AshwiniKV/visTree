@@ -17,7 +17,7 @@ plot_minmax(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis, cond.tree,
 
 \item{str}{Structure of pathway from the root node in the decision tree to each terminal node}
 
-\item{color.type}{Color palettes. (rainbow_hcl = 1; heat_hcl = 2; terrain_hcl = 3; sequential_hcl = 4; cm.colors = 5)}
+\item{color.type}{Color palettes. (rainbow_hcl = 1; heat_hcl = 2; terrain_hcl = 3; sequential_hcl = 4; diverge_hcl = 5)}
 
 \item{alpha}{Transparency of individual horizontal bars. Choose values between 0 to 1.}
 
@@ -42,7 +42,7 @@ plot_minmax(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis, cond.tree,
 \item{text.label}{Change the size of the axis annotation}
 }
 \description{
-A series of sub-plots that correspond to individual terminal nodes within the decision tree structure. Each subplot is composed of a histogram in the background that shows the distribution of the outcome for individuals in this subgroup and colored horizontal bars which summarize the set of covariate splits used to define the subgroup.
+This function is utilised to generate a series of sub-plots, where each subplot corresponds to individual terminal nodes within the decision tree structure. Each subplot is composed of a histogram in the background that shows the distribution of the outcome for individuals in this subgroup and colored horizontal bars which summarize the set of covariate splits used to define the subgroup.
 }
 \keyword{decision}
 \keyword{matrix}
