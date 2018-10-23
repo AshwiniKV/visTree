@@ -96,8 +96,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
     polygon(c(lo, lo, hi, hi), c(j - 0.5, j + 0.5, j + 0.5, j - 0.5), col = makeTransparent(rbw[i], alpha = alpha), border = NA)
     #rect(xleft = lo, xright = lo, ytop = hi, ybottom = hi, density = c(j - 0.5, j + 0.5, j + 0.5, j - 0.5), col = makeTransparent(rbw[i], alpha = alpha), border = NA)
 
-    if (rownames(My$M)[i] != "sex") {
-      if (mymat[i, 2] == Inf) {
+    if (mymat[i, 2] == Inf) {
         idx <- 1
       } else {
         idx <- 2
@@ -111,7 +110,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
       if (My$M[i, 1] == -Inf && My$M[i, 2] != Inf) {
         text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], "<=", round(as.numeric(My$M[i, 2]), text.round)), font = 2, cex = text.bar)
       }
-    } ## Label the variables
+     ## Label the variables
     j <- j + 1
   }
   if (is.factor(Y)) {
