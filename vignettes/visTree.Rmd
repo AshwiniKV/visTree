@@ -1,5 +1,5 @@
 ---
-title: "visTree: visualization of subgroups for decision trees"
+title: "visTree: Visualization of subgroups for decision trees"
 author: "Ashwini Venkatasubramaniam and Julian Wolfson"
 date: "`r Sys.Date()`"
 output:
