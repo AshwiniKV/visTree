@@ -8,7 +8,7 @@ License: GPL-3
 Encoding: UTF-8
 Imports: partykit, rpart, colorspace
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Suggests:
     covr,
     knitr,
