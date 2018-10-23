@@ -101,6 +101,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
       } else {
         idx <- 2
       }
+    if (inherits(cond.tree, "constparty")) {
       if (My$M[i, 1] != -Inf && My$M[i, 2] == Inf) {
         text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], ">", round(as.numeric(My$M[i, 1]), text.round)), font = 2, cex = text.bar)
       }
@@ -110,9 +111,23 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
       if (My$M[i, 1] == -Inf && My$M[i, 2] != Inf) {
         text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], "<=", round(as.numeric(My$M[i, 2]), text.round)), font = 2, cex = text.bar)
       }
+    }else{
+      if (My$M[i, 1] != -Inf && My$M[i, 2] == Inf) {
+        text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], ">=", round(as.numeric(My$M[i, 1]), text.round)), font = 2, cex = text.bar)
+      }
+      if (My$M[i, 1] != -Inf && My$M[i, 2] != Inf) {
+        text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], "<", round(as.numeric(My$M[i, 2]), text.round), "\n", rownames(My$M)[i], ">=", round(as.numeric(My$M[i, 1]), text.round)), font = 2, cex = text.bar)
+      }
+      if (My$M[i, 1] == -Inf && My$M[i, 2] != Inf) {
+        text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], "<", round(as.numeric(My$M[i, 2]), text.round)), font = 2, cex = text.bar)
+      }
+    }
+    
+    
      ## Label the variables
     j <- j + 1
   }
+  
   if (is.factor(Y)) {
     if(add.h.axis == TRUE){
     bp <- barplot(scale.factor * H$density, width = wdth, yaxt = "n", col = rgb(0, 0, 0, 0.15), border = rgb(0, 0, 0, 0.1), add = FALSE, space = 0)
