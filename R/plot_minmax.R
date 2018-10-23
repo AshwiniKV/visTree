@@ -68,10 +68,10 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
     ## Set up an empty plot of the correct size
 
     plot(NA, xlim = c(0, 1), ylim = c(0, max.y), ylab = "", xlab = "Percentile", font = 2, main = paste0("Node ID = ", tail(comps[[1]], 1), "(", "n = ", length(node.index), ")"), bty = "n", yaxt = "n", xaxt = "n", cex.axis = text.label, cex.main = text.title)
-    if(add.p.axis == TRUE){
-    axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = rep("", 6), tck = 0.05)
-    title(main = "Percentile", line = -1.05, cex.main = text.axis)
-    axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = c(0, 20, 40, 60, 80, 100), line = -2.5, lwd = 0, cex.axis = text.label, font = 2)
+    if (add.p.axis == TRUE) {
+      axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = rep("", 6), tck = 0.05)
+      title(main = "Percentile", line = -1.05, cex.main = text.axis)
+      axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = c(0, 20, 40, 60, 80, 100), line = -2.5, lwd = 0, cex.axis = text.label, font = 2)
     }
   } else {
     H <- hist(ecdf(Y)(Y[node.index]), breaks = seq(0, 1, by = 0.1), plot = FALSE)
@@ -80,12 +80,13 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
     ## Set up an empty plot of the correct size
     # plot(NA,xlim=c(0,1),ylim=c(0,max.y),ylab="", font = 2,main=paste0("Node ID = ", tail(comps[[1]], 1), " (Mean = ",round(my.y.val, 2),", n = ",length(node.index),")"),bty="n", yaxt = "n", xaxt = "n",cex.axis = text.label, cex.main =text.title)
     plot(NA, xlim = c(0, 1), ylim = c(0, max.y), ylab = "", font = 2, main = paste0("Node ID = ", tail(comps[[1]], 1), " (n = ", length(node.index), ")"), bty = "n", yaxt = "n", xaxt = "n", cex.axis = text.label, cex.main = text.title)
-    if(add.p.axis == TRUE){
-    axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = rep("", 6), tck = 0.05)
-    title(main = "Percentile", line = -1.05, cex.main = text.axis)
-    axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = c(0, 20, 40, 60, 80, 100), line = -2.5, lwd = 0, cex.axis = text.label, font = 2)
-    ## Plot the background histogram
-  }}
+    if (add.p.axis == TRUE) {
+      axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = rep("", 6), tck = 0.05)
+      title(main = "Percentile", line = -1.05, cex.main = text.axis)
+      axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = c(0, 20, 40, 60, 80, 100), line = -2.5, lwd = 0, cex.axis = text.label, font = 2)
+      ## Plot the background histogram
+    }
+  }
 
   ## Now plot the horizontal bars corresponding to each variable.
   j <- 1
@@ -94,13 +95,13 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
     lo <- ifelse(mymat[i, 1] == -Inf, 0, F.x(mymat[i, 1]))
     hi <- ifelse(mymat[i, 2] == Inf, 1, F.x(mymat[i, 2]))
     polygon(c(lo, lo, hi, hi), c(j - 0.5, j + 0.5, j + 0.5, j - 0.5), col = makeTransparent(rbw[i], alpha = alpha), border = NA)
-    #rect(xleft = lo, xright = lo, ytop = hi, ybottom = hi, density = c(j - 0.5, j + 0.5, j + 0.5, j - 0.5), col = makeTransparent(rbw[i], alpha = alpha), border = NA)
+    # rect(xleft = lo, xright = lo, ytop = hi, ybottom = hi, density = c(j - 0.5, j + 0.5, j + 0.5, j - 0.5), col = makeTransparent(rbw[i], alpha = alpha), border = NA)
 
     if (mymat[i, 2] == Inf) {
-        idx <- 1
-      } else {
-        idx <- 2
-      }
+      idx <- 1
+    } else {
+      idx <- 2
+    }
     if (inherits(cond.tree, "constparty")) {
       if (My$M[i, 1] != -Inf && My$M[i, 2] == Inf) {
         text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], ">", round(as.numeric(My$M[i, 1]), text.round)), font = 2, cex = text.bar)
@@ -111,7 +112,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
       if (My$M[i, 1] == -Inf && My$M[i, 2] != Inf) {
         text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], "<=", round(as.numeric(My$M[i, 2]), text.round)), font = 2, cex = text.bar)
       }
-    }else{
+    } else {
       if (My$M[i, 1] != -Inf && My$M[i, 2] == Inf) {
         text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], ">=", round(as.numeric(My$M[i, 1]), text.round)), font = 2, cex = text.bar)
       }
@@ -122,17 +123,17 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
         text(mean(c(lo, hi)), j, paste0(rownames(My$M)[i], "<", round(as.numeric(My$M[i, 2]), text.round)), font = 2, cex = text.bar)
       }
     }
-    
-    
-     ## Label the variables
+
+
+    ## Label the variables
     j <- j + 1
   }
-  
+
   if (is.factor(Y)) {
-    if(add.h.axis == TRUE){
-    bp <- barplot(scale.factor * H$density, width = wdth, yaxt = "n", col = rgb(0, 0, 0, 0.15), border = rgb(0, 0, 0, 0.1), add = FALSE, space = 0)
-    }else{
-    bp <- barplot(scale.factor * H$density, width = wdth, yaxt = "n", col = rgb(0, 0, 0, 0.15), xaxt = "n", border = rgb(0, 0, 0, 0.1), add = FALSE, space = 0)
+    if (add.h.axis == TRUE) {
+      bp <- barplot(scale.factor * H$density, width = wdth, yaxt = "n", col = rgb(0, 0, 0, 0.15), border = rgb(0, 0, 0, 0.1), add = FALSE, space = 0)
+    } else {
+      bp <- barplot(scale.factor * H$density, width = wdth, yaxt = "n", col = rgb(0, 0, 0, 0.15), xaxt = "n", border = rgb(0, 0, 0, 0.1), add = FALSE, space = 0)
     }
     ## Add the category labels
     text(seq(wdth / 2, 1 - wdth / 2, by = wdth), rep(0, length(levels(Y))), levels(Y), pos = 3, adj = 0.5, cex = text.bar, font = 2)
@@ -144,15 +145,15 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
     }
   } else {
     max.density <- max(hist(Y, plot = FALSE)$density)
-    yaxis.limits<- c(range(density(Y[node.index])$y))
-    xaxis.limits<-c(range(Y))
-    if(add.h.axis == TRUE){
-    H <- hist(Y[node.index], plot = TRUE, prob = TRUE, xlim = xaxis.limits, ylim = yaxis.limits, yaxt = "n",main = " ", font = 2, cex.axis = text.axis, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
-    }else{
-    H <- hist(Y[node.index], plot = TRUE, prob = TRUE, xlim = xaxis.limits, ylim = yaxis.limits, yaxt = "n",main = " ", xaxt = "n", font = 2, cex.axis = text.axis, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
+    yaxis.limits <- c(range(density(Y[node.index])$y))
+    xaxis.limits <- c(range(Y))
+    if (add.h.axis == TRUE) {
+      H <- hist(Y[node.index], plot = TRUE, prob = TRUE, xlim = xaxis.limits, ylim = yaxis.limits, yaxt = "n", main = " ", font = 2, cex.axis = text.axis, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
+    } else {
+      H <- hist(Y[node.index], plot = TRUE, prob = TRUE, xlim = xaxis.limits, ylim = yaxis.limits, yaxt = "n", main = " ", xaxt = "n", font = 2, cex.axis = text.axis, border = rgb(0, 0, 0, 0.1), col = rgb(0, 0, 0, 0.15))
     }
-    if(density.line){
-    lines(density(Y[node.index]), lty = 2, lwd = 1.5)
+    if (density.line) {
+      lines(density(Y[node.index]), lty = 2, lwd = 1.5)
     }
     if (inherits(cond.tree, "constparty")) {
       title(main = paste0(names(cond.tree$data)[1], " (Mean = ", round(as.numeric(my.y.val), 0), ")"), cex.main = text.main)

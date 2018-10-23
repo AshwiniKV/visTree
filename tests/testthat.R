@@ -45,90 +45,106 @@ test_that("Split_node", {
 
 ########################################################################
 
-if(inherits(cond.tree1, "constparty")){
-  splittree<-path_node(cond.tree1)
-}else{
-  splittree<-path_node(as.party(cond.tree1))
+if (inherits(cond.tree1, "constparty")) {
+  splittree <- path_node(cond.tree1)
+} else {
+  splittree <- path_node(as.party(cond.tree1))
 }
-structure<-strsplit(splittree, split=";")
-if(inherits(cond.tree1, "constparty")){
-  terminal.id<-nodeids(cond.tree1, terminal = TRUE)}else{
-    terminal.id<-nodeids(as.party(cond.tree1), terminal = TRUE)
-  }
-if(length(structure[[1]]) == length(terminal.id)){
-  structure[[1]]<-sapply(1:length(structure[[1]]), function(i){
-    paste0(structure[[1]][i],",", terminal.id[i], " ")})
+structure <- strsplit(splittree, split = ";")
+if (inherits(cond.tree1, "constparty")) {
+  terminal.id <- nodeids(cond.tree1, terminal = TRUE)
+} else {
+  terminal.id <- nodeids(as.party(cond.tree1), terminal = TRUE)
+}
+if (length(structure[[1]]) == length(terminal.id)) {
+  structure[[1]] <- sapply(1:length(structure[[1]]), function(i) {
+    paste0(structure[[1]][i], ",", terminal.id[i], " ")
+  })
 }
 
-if(inherits(cond.tree1, "constparty")){
-  input.info<-data_party(cond.tree1)
+if (inherits(cond.tree1, "constparty")) {
+  input.info <- data_party(cond.tree1)
   #  X <- input.info[,2:(length(input.info)-3)]
-  X <- input.info[,2:(length(input.info)-3)]
-  Y <- fitted(cond.tree1)[[3]]}else{
-    input.info<-data_party(as.party(cond.tree1))
-    #  X <- input.info[,2:(length(input.info)-3)]
-    X <- input.info[,2:(length(input.info)-2)]
-    Y <- fitted(as.party(cond.tree1))[[2]]
-  }    
+  X <- input.info[, 2:(length(input.info) - 3)]
+  Y <- fitted(cond.tree1)[[3]]
+} else {
+  input.info <- data_party(as.party(cond.tree1))
+  #  X <- input.info[,2:(length(input.info)-3)]
+  X <- input.info[, 2:(length(input.info) - 2)]
+  Y <- fitted(as.party(cond.tree1))[[2]]
+}
 
-if(is.factor(Y)) {
+if (is.factor(Y)) {
   n.terminals <- length(structure[[1]])
-  #prob.mat <- matrix(data=unlist(lapply(structure[[1]],function(S) {
+  # prob.mat <- matrix(data=unlist(lapply(structure[[1]],function(S) {
   # unlist(lapply(strsplit(S,","),function(split.S) {
   # seg <- unlist(split.S[length(split.S)])
   # as.numeric(trim(strsplit(seg,"=")[[1]][2]))
-  #})) 
-  #})), nrow=n.terminals)
-  y.list <- sapply(1:length(structure[[1]]),function(j) {
-    seg<-strsplit(structure[[1]],",")
-    if(interval == TRUE){paste0(seg[[j]][c((length(seg[[j]])-2): (length(seg[[j]])-1))], collapse = ",")}else{
-      paste0(seg[[j]][length(seg[[j]])-2], collapse = ",")}
+  # }))
+  # })), nrow=n.terminals)
+  y.list <- sapply(1:length(structure[[1]]), function(j) {
+    seg <- strsplit(structure[[1]], ",")
+    if (interval == TRUE) {
+      paste0(seg[[j]][c((length(seg[[j]]) - 2):(length(seg[[j]]) - 1))], collapse = ",")
+    } else {
+      paste0(seg[[j]][length(seg[[j]]) - 2], collapse = ",")
+    }
   })
-  
-  x.list <- sapply(1:length(structure[[1]]),function(j) {
-    seg<-strsplit(structure[[1]],",")
-    x.l<-sapply(1:length(seg), function(i){
-      if(interval == TRUE){
-        x.length<-length(seg[[i]]) - 3}else{
-          x.length<-length(seg[[i]])-2}
-    })  
-    if(interval == TRUE){
-      paste0(seg[[j]][1:(length(seg[[j]])-3)], collapse = ",")}else{
-        paste0(seg[[j]][1:(length(seg[[j]])-2)], collapse = ",")
+
+  x.list <- sapply(1:length(structure[[1]]), function(j) {
+    seg <- strsplit(structure[[1]], ",")
+    x.l <- sapply(1:length(seg), function(i) {
+      if (interval == TRUE) {
+        x.length <- length(seg[[i]]) - 3
+      } else {
+        x.length <- length(seg[[i]]) - 2
       }
+    })
+    if (interval == TRUE) {
+      paste0(seg[[j]][1:(length(seg[[j]]) - 3)], collapse = ",")
+    } else {
+      paste0(seg[[j]][1:(length(seg[[j]]) - 2)], collapse = ",")
+    }
   })
-  
-  term.node<-sapply(1:length(structure[[1]]), function(j){
-    seg<-strsplit(structure[[1]], ",")
-    if(interval == TRUE){paste0(tail(seg[[j]],1), collapse = ",")}else{
-      paste0(tail(seg[[j]],1), collapse = ",")}
+
+  term.node <- sapply(1:length(structure[[1]]), function(j) {
+    seg <- strsplit(structure[[1]], ",")
+    if (interval == TRUE) {
+      paste0(tail(seg[[j]], 1), collapse = ",")
+    } else {
+      paste0(tail(seg[[j]], 1), collapse = ",")
+    }
   })
-  
-  structure <- lapply(1:length(y.list),function(i) {
-    paste0(x.list[[i]],", ",y.list[[i]], ", ", term.node[[i]])
+
+  structure <- lapply(1:length(y.list), function(i) {
+    paste0(x.list[[i]], ", ", y.list[[i]], ", ", term.node[[i]])
   })
 }
-if(length(unlist(structure))==1) { stop("Tree has only a single node; nothing to visualize.") }
-#terminal.id<-nodeids(cond.tree, terminal = TRUE)
-rng<-NULL
-n.terminals <- ifelse(is.null(rng),length(unlist(structure)),length(rng))
-if(is.null(rng)) { 
-  index <- 1:n.terminals } else { 
-    index <- min(rng):min(max(rng),length(unlist(structure))) } ## Should probably do some range checking
-if(length(index)>10) stop("Number of subgroups is too large")
+if (length(unlist(structure)) == 1) {
+  stop("Tree has only a single node; nothing to visualize.")
+}
+# terminal.id<-nodeids(cond.tree, terminal = TRUE)
+rng <- NULL
+n.terminals <- ifelse(is.null(rng), length(unlist(structure)), length(rng))
+if (is.null(rng)) {
+  index <- 1:n.terminals
+} else {
+  index <- min(rng):min(max(rng), length(unlist(structure)))
+} ## Should probably do some range checking
+if (length(index) > 10) stop("Number of subgroups is too large")
 
-par(mfrow=c(4,ceiling(length(index)/2)),mar=c(2,1,3,1))
-number<-length(index)*2 + (length(index)*2)%%4
-layout(matrix(1:number, 4, ceiling(length(index)/2)))
+par(mfrow = c(4, ceiling(length(index) / 2)), mar = c(2, 1, 3, 1))
+number <- length(index) * 2 + (length(index) * 2) %% 4
+layout(matrix(1:number, 4, ceiling(length(index) / 2)))
 
-S<-unlist(structure)[index]
-My<-minmax_mat(S, colnames(X), Y, FALSE)
-myy<-as.numeric(strsplit(My$y, " ")[[1]][3])
+S <- unlist(structure)[index]
+My <- minmax_mat(S, colnames(X), Y, FALSE)
+myy <- as.numeric(strsplit(My$y, " ")[[1]][3])
 
 test_that("minmax", {
   expect_equal(as.numeric(strsplit(minmax_mat(S, colnames(X), Y, FALSE)$y, " ")[[1]][3]), term_mean)
 })
 
-test_that("Pathnode",{
-expect_equal(as.numeric(strsplit(strsplit(path_node(cond.tree1, 4), ",")[[1]][4], " ")[[1]][3]), term_mean)
+test_that("Pathnode", {
+  expect_equal(as.numeric(strsplit(strsplit(path_node(cond.tree1, 4), ",")[[1]][4], " ")[[1]][3]), term_mean)
 })
