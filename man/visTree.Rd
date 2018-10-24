@@ -15,7 +15,7 @@ visTree(cond.tree, rng = NULL, interval = FALSE, color.type = 1,
 
 \item{rng}{Restrict plotting to a particular set of nodes. Default value is set as NULL}
 
-\item{interval}{logical. Continuous (interval = FALSE) and Categorical variable (interval = TRUE).}
+\item{interval}{logical. Continuous (interval = FALSE) and Categorical response variable (interval = TRUE).}
 
 \item{color.type}{Color palettes (rainbow_hcl = 1; heat_hcl = 2; terrain_hcl = 3; sequential_hcl = 4 ; diverge_hcl = 5)}
 
