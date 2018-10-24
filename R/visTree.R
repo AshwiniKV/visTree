@@ -12,9 +12,10 @@
 #' @param text.main Change the size of the main titles
 #' @param text.axis Change the size of the text of axis labels
 #' @param text.title Change the size of the text in the title
-#' @param text.bar Change the size of the text in the horizontal bar and below the bar plot
-#' @param text.round Round the threshold displayed on the bar
+#' @param text.bar Change the size of the text in the horizontal bar 
+#' @param text.round Round the threshold displayed on the horizontal bar
 #' @param text.label Change the size of the axis annotation
+#' @param text.percentile Change the size of the percentile title
 #' @param density.line Draw a density line
 #' @keywords visualization pathway decision tree
 #' @author Ashwini Venkatasubramaniam and Julian Wolfson
@@ -24,9 +25,9 @@
 #' airq <- subset(airquality, !is.na(Ozone))
 #' ed<-partykit::extree_data(Ozone ~ ., data = airq)
 #' airct <- partykit::ctree(Ozone ~ ., data = airq)
-#' visTree(airct)
+#' visTree(airct, text.bar = 1.1, text.percentile = 0.9)
 
-visTree <- function(cond.tree, rng = NULL, interval = FALSE, color.type = 1, alpha = 0.5, add.h.axis = TRUE, add.p.axis = TRUE, text.round = 1, text.main = 1.5, text.bar = 1.5, text.title = 1.5, text.label = 1.5, text.axis = 1.5, density.line = TRUE) {
+visTree <- function(cond.tree, rng = NULL, interval = FALSE, color.type = 1, alpha = 0.5, add.h.axis = TRUE, add.p.axis = TRUE, text.round = 1, text.main = 1.5, text.bar = 1.5, text.title = 1.5, text.label = 1.5, text.axis = 1.5, text.percentile = 0.9, density.line = TRUE) {
   ## Wrapper function to produce plots from a conditional inference tree
   ## 'range' parameter can restrict plotting to a particular set of nodes
 
@@ -123,7 +124,7 @@ visTree <- function(cond.tree, rng = NULL, interval = FALSE, color.type = 1, alp
 
   invisible(
     sapply(unlist(structure)[index], function(S) {
-      plot_minmax(minmax_mat(S, colnames(X), Y, interval), X, Y, S, color.type, alpha, add.p.axis, add.h.axis, cond.tree, text.main, text.bar, text.round, density.line, text.title, text.label, text.axis)
+      plot_minmax(minmax_mat(S, colnames(X), Y, interval), X, Y, S, color.type, alpha, add.p.axis, add.h.axis, cond.tree, text.main, text.bar, text.round, text.percentile, density.line, text.title, text.axis, text.label)
     })
   )
 }

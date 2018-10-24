@@ -1,6 +1,6 @@
 #' Generate individual subplots within the graphical visualization
 #'
-#' This function is utilised to generate a series of sub-plots, where each subplot corresponds to individual terminal nodes within the decision tree structure. Each subplot is composed of a histogram in the background that shows the distribution of the outcome for individuals in this subgroup and colored horizontal bars which summarize the set of covariate splits used to define the subgroup.
+#' This function is utilised to generate a series of sub-plots, where each subplot corresponds to individual terminal nodes within the decision tree structure. Each subplot is composed of a histogram (or a barchart) in the background that shows the distribution for individuals in this subgroup. Colored horizontal bars summarize the set of covariate splits; the different splits are used to define the subgroups.
 #'
 #' @param My A matrix to define the split points within the decision tree structure
 #' @param X Covariates
@@ -8,16 +8,17 @@
 #' @param str Structure of pathway from the root node in the decision tree to each terminal node
 #' @param color.type Color palettes. (rainbow_hcl = 1; heat_hcl = 2; terrain_hcl = 3; sequential_hcl = 4; diverge_hcl = 5)
 #' @param alpha Transparency of individual horizontal bars. Choose values between 0 to 1.
-#' @param add.h.axis logical. Add axis for the outcome (add.h.axis = TRUE), remove axis for the outcome (add.h.axis = FALSE).
 #' @param add.p.axis logical. Add axis for the percentiles (add.p.axis = TRUE), remove axis for the percentiles (add.p.axis = FALSE).
+#' @param add.h.axis logical. Add axis for the outcome (add.h.axis = TRUE), remove axis for the outcome (add.h.axis = FALSE).
 #' @param cond.tree Tree as a party object
 #' @param text.main Change the size of the main titles
-#' @param text.axis Change the size of the text of axis labels
-#' @param text.title Change the size of the text in the title
 #' @param text.bar Change the size of the text in the horizontal bar and below the bar plot
 #' @param text.round Round the threshold displayed on the bar
-#' @param text.label Change the size of the axis annotation
+#' @param text.percentile Change the size of the percentile title
 #' @param density.line Draw a density line
+#' @param text.title Change the size of the text in the title
+#' @param text.axis Change the size of the text of axis labels
+#' @param text.label Change the size of the axis annotation
 #' @keywords matrix pathway decision tree
 #' @export
 #' @importFrom graphics barplot hist par plot polygon segments text title lines layout axis abline
@@ -26,7 +27,7 @@
 #'
 #'
 
-plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis, cond.tree, text.main, text.bar, text.round, density.line, text.title, text.axis, text.label) {
+plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis, cond.tree, text.main, text.bar, text.round, text.percentile, density.line, text.title, text.axis, text.label) {
   ## Main function which plots the bars for each variable along with a histogram of the outcome
   comps <- strsplit(str, ",")
   mymat <- matrix(as.numeric(My$M[, -3]), ncol = 2)
@@ -67,7 +68,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
     scale.factor <- max.y / max(H$density)
     ## Set up an empty plot of the correct size
 
-    plot(NA, xlim = c(0, 1), ylim = c(0, max.y), ylab = "", xlab = "Percentile", font = 2, main = paste0("Node ID = ", tail(comps[[1]], 1), "(", "n = ", length(node.index), ")"), bty = "n", yaxt = "n", xaxt = "n", cex.axis = text.label, cex.main = text.title)
+    plot(NA, xlim = c(0, 1), ylim = c(0, max.y), ylab = "", xlab = "Percentile", font = 2, main = paste0("Node ID = ", tail(comps[[1]], 1), "(", "n = ", length(node.index), ")"), bty = "n", yaxt = "n", xaxt = "n", cex.axis = text.percentile, cex.main = text.title)
     if (add.p.axis == TRUE) {
       axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = rep("", 6), tck = 0.05)
       title(main = "Percentile", line = -1.05, cex.main = text.axis)

@@ -13,7 +13,7 @@ minmax_mat(str, varnms, Y, interval)
 
 \item{Y}{Response variable in the dataset}
 
-\item{interval}{logical. Continuous (interval = FALSE) and Categorical variable (interval = TRUE).}
+\item{interval}{logical. Continuous response (interval = FALSE) and Categorical response (interval = TRUE).}
 }
 \description{
 Identifies splits and relevant criteria

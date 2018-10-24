@@ -8,7 +8,7 @@ visTree(cond.tree, rng = NULL, interval = FALSE, color.type = 1,
   alpha = 0.5, add.h.axis = TRUE, add.p.axis = TRUE,
   text.round = 1, text.main = 1.5, text.bar = 1.5,
   text.title = 1.5, text.label = 1.5, text.axis = 1.5,
-  density.line = TRUE)
+  text.percentile = 0.9, density.line = TRUE)
 }
 \arguments{
 \item{cond.tree}{Decision tree generated as a party object.}
@@ -25,17 +25,19 @@ visTree(cond.tree, rng = NULL, interval = FALSE, color.type = 1,
 
 \item{add.p.axis}{logical. Add axis for the percentiles (add.p.axis = TRUE), remove axis for the percentiles (add.p.axis = FALSE).}
 
-\item{text.round}{Round the threshold displayed on the bar}
+\item{text.round}{Round the threshold displayed on the horizontal bar}
 
 \item{text.main}{Change the size of the main titles}
 
-\item{text.bar}{Change the size of the text in the horizontal bar and below the bar plot}
+\item{text.bar}{Change the size of the text in the horizontal bar}
 
 \item{text.title}{Change the size of the text in the title}
 
 \item{text.label}{Change the size of the axis annotation}
 
 \item{text.axis}{Change the size of the text of axis labels}
+
+\item{text.percentile}{Change the size of the percentile title}
 
 \item{density.line}{Draw a density line}
 }
@@ -46,7 +48,7 @@ This visualization characterizes subgroups defined by a decision tree structure 
 airq <- subset(airquality, !is.na(Ozone))
 ed<-partykit::extree_data(Ozone ~ ., data = airq)
 airct <- partykit::ctree(Ozone ~ ., data = airq)
-visTree(airct)
+visTree(airct, text.bar = 1.1, text.percentile = 0.9)
 }
 \author{
 Ashwini Venkatasubramaniam and Julian Wolfson

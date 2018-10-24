@@ -5,8 +5,8 @@
 \title{Generate individual subplots within the graphical visualization}
 \usage{
 plot_minmax(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis,
-  cond.tree, text.main, text.bar, text.round, density.line, text.title,
-  text.axis, text.label)
+  cond.tree, text.main, text.bar, text.round, text.percentile,
+  density.line, text.title, text.axis, text.label)
 }
 \arguments{
 \item{My}{A matrix to define the split points within the decision tree structure}
@@ -33,6 +33,8 @@ plot_minmax(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis,
 
 \item{text.round}{Round the threshold displayed on the bar}
 
+\item{text.percentile}{Change the size of the percentile title}
+
 \item{density.line}{Draw a density line}
 
 \item{text.title}{Change the size of the text in the title}
@@ -42,7 +44,7 @@ plot_minmax(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis,
 \item{text.label}{Change the size of the axis annotation}
 }
 \description{
-This function is utilised to generate a series of sub-plots, where each subplot corresponds to individual terminal nodes within the decision tree structure. Each subplot is composed of a histogram in the background that shows the distribution of the outcome for individuals in this subgroup and colored horizontal bars which summarize the set of covariate splits used to define the subgroup.
+This function is utilised to generate a series of sub-plots, where each subplot corresponds to individual terminal nodes within the decision tree structure. Each subplot is composed of a histogram (or a barchart) in the background that shows the distribution for individuals in this subgroup. Colored horizontal bars summarize the set of covariate splits; the different splits are used to define the subgroups.
 }
 \keyword{decision}
 \keyword{matrix}

@@ -4,13 +4,12 @@
 #' @param Y Response variable in the dataset
 #' @param str Structure of pathway from the root node in the decision tree to each terminal node
 #' @param varnms Names of covariates
-#' @param interval logical. Continuous (interval = FALSE) and Categorical variable (interval = TRUE).
+#' @param interval logical. Continuous response (interval = FALSE) and Categorical response (interval = TRUE).
 #' @keywords visualization pathway decision tree
 #' @export
 #'
 
 minmax_mat <- function(str, varnms, Y, interval) {
-  ## Helper function to create a matrix of ranges for each variable in a path to a node
   comps <- strsplit(str, ",")
   MMM <- matrix(data = rep(c(-Inf, Inf, " "), length(varnms)), nrow = length(varnms), ncol = 3, byrow = TRUE) ### min-max matrix
   rownames(MMM) <- varnms
