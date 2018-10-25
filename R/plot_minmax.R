@@ -68,10 +68,10 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
     scale.factor <- max.y / max(H$density)
     ## Set up an empty plot of the correct size
 
-    plot(NA, xlim = c(0, 1), ylim = c(0, max.y), ylab = "", xlab = "Percentile", font = 2, main = paste0("Node ID = ", tail(comps[[1]], 1), "(", "n = ", length(node.index), ")"), bty = "n", yaxt = "n", xaxt = "n", cex.axis = text.percentile, cex.main = text.title)
+    plot(NA, xlim = c(0, 1), ylim = c(0, max.y), ylab = "", font = 2, main = paste0("Node ID = ", tail(comps[[1]], 1), "(", "n = ", length(node.index), ")"), bty = "n", yaxt = "n", xaxt = "n", cex.axis = text.percentile, cex.main = text.title)
     if (add.p.axis == TRUE) {
       axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = rep("", 6), tck = 0.05)
-      title(main = "Percentile", line = -1.05, cex.main = text.axis)
+      title(main = "Percentile", line = -1.05, cex.main = text.percentile)
       axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = c(0, 20, 40, 60, 80, 100), line = -2.5, lwd = 0, cex.axis = text.label, font = 2)
     }
   } else {
@@ -83,7 +83,7 @@ plot_minmax <- function(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis
     plot(NA, xlim = c(0, 1), ylim = c(0, max.y), ylab = "", font = 2, main = paste0("Node ID = ", tail(comps[[1]], 1), " (n = ", length(node.index), ")"), bty = "n", yaxt = "n", xaxt = "n", cex.axis = text.label, cex.main = text.title)
     if (add.p.axis == TRUE) {
       axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = rep("", 6), tck = 0.05)
-      title(main = "Percentile", line = -1.05, cex.main = text.axis)
+      title(main = "Percentile", line = -1.05, cex.main = text.percentile)
       axis(side = 3, at = c(0.0, 0.2, 0.4, 0.6, 0.8, 1.0), labels = c(0, 20, 40, 60, 80, 100), line = -2.5, lwd = 0, cex.axis = text.label, font = 2)
       ## Plot the background histogram
     }

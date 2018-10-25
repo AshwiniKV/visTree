@@ -4,9 +4,9 @@
 \alias{plot_minmax}
 \title{Generate individual subplots within the graphical visualization}
 \usage{
-plot_minmax(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis,
-  cond.tree, text.main, text.bar, text.round, text.percentile,
-  density.line, text.title, text.axis, text.label)
+plot_minmax(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis, cond.tree,
+  text.main, text.bar, text.round, text.percentile, density.line, text.title,
+  text.axis, text.label)
 }
 \arguments{
 \item{My}{A matrix to define the split points within the decision tree structure}
