@@ -13,17 +13,17 @@ visTree(cond.tree, rng = NULL, interval = FALSE, color.type = 1,
 \arguments{
 \item{cond.tree}{Decision tree generated as a party object.}
 
-\item{rng}{Restrict plotting to a particular set of nodes. Default value is set as NULL}
+\item{rng}{Restrict plotting to a particular set of nodes. Default value is set as NULL.}
 
 \item{interval}{logical. Continuous (interval = FALSE) and Categorical response variable (interval = TRUE).}
 
 \item{color.type}{Color palettes (rainbow_hcl = 1; heat_hcl = 2; terrain_hcl = 3; sequential_hcl = 4 ; diverge_hcl = 5)}
 
-\item{alpha}{Transparency for individual horizonatal colored bars within each subplot. Values between 0 to 1.}
+\item{alpha}{Transparency for horizontal colored bars in each subplot. Values between 0 to 1.}
 
-\item{add.h.axis}{logical. Add axis for the outcome (add.h.axis = TRUE), remove axis for the outcome (add.h.axis = FALSE).}
+\item{add.h.axis}{logical. Add axis for the outcome distribution (add.h.axis = TRUE), remove axis for the outcome (add.h.axis = FALSE).}
 
-\item{add.p.axis}{logical. Add axis for the percentiles (add.p.axis = TRUE), remove axis for the percentiles (add.p.axis = FALSE).}
+\item{add.p.axis}{logical. Add axis for the percentiles (add.p.axis = TRUE) computed over covariate values, remove axis for the percentiles (add.p.axis = FALSE).}
 
 \item{text.round}{Round the threshold displayed on the horizontal bar}
 
@@ -39,7 +39,7 @@ visTree(cond.tree, rng = NULL, interval = FALSE, color.type = 1,
 
 \item{text.percentile}{Change the size of the percentile title}
 
-\item{density.line}{Draw a density line}
+\item{density.line}{logical. Draw a density line. (density.line = TRUE).}
 }
 \description{
 This visualization characterizes subgroups defined by a decision tree structure and identifies the range of covariate values associated with outcome values in each subgroup.

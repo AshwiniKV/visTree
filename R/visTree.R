@@ -3,12 +3,12 @@
 #' This visualization characterizes subgroups defined by a decision tree structure and identifies the range of covariate values associated with outcome values in each subgroup.
 #'
 #' @param cond.tree Decision tree generated as a party object.
-#' @param rng Restrict plotting to a particular set of nodes. Default value is set as NULL
+#' @param rng Restrict plotting to a particular set of nodes. Default value is set as NULL.
 #' @param interval logical. Continuous (interval = FALSE) and Categorical response variable (interval = TRUE).
 #' @param color.type Color palettes (rainbow_hcl = 1; heat_hcl = 2; terrain_hcl = 3; sequential_hcl = 4 ; diverge_hcl = 5)
-#' @param alpha Transparency for individual horizonatal colored bars within each subplot. Values between 0 to 1.
-#' @param add.h.axis logical. Add axis for the outcome (add.h.axis = TRUE), remove axis for the outcome (add.h.axis = FALSE).
-#' @param add.p.axis logical. Add axis for the percentiles (add.p.axis = TRUE), remove axis for the percentiles (add.p.axis = FALSE).
+#' @param alpha Transparency for horizontal colored bars in each subplot. Values between 0 to 1.
+#' @param add.h.axis logical. Add axis for the outcome distribution (add.h.axis = TRUE), remove axis for the outcome (add.h.axis = FALSE).
+#' @param add.p.axis logical. Add axis for the percentiles (add.p.axis = TRUE) computed over covariate values, remove axis for the percentiles (add.p.axis = FALSE).
 #' @param text.main Change the size of the main titles
 #' @param text.axis Change the size of the text of axis labels
 #' @param text.title Change the size of the text in the title
@@ -16,7 +16,7 @@
 #' @param text.round Round the threshold displayed on the horizontal bar
 #' @param text.label Change the size of the axis annotation
 #' @param text.percentile Change the size of the percentile title
-#' @param density.line Draw a density line
+#' @param density.line logical. Draw a density line. (density.line = TRUE).
 #' @keywords visualization pathway decision tree
 #' @author Ashwini Venkatasubramaniam and Julian Wolfson
 #' @export
