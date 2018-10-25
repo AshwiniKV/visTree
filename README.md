@@ -8,7 +8,7 @@ Visualization of subgroups for decision trees
 This package presents a novel visual representation of decision trees and shifts the primary focus to characterizing subgroups. This visualization is composed of a series of plots that display selected covariates, their splits and the relevant outcome's distribution.
 
 ## Latest news
-You can find the recent changes to the visTree package in the NEWS.md file
+The recent changes to the visTree package are listed in the NEWS.md file.
 
 
 
