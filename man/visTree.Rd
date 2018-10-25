@@ -48,7 +48,7 @@ This visualization characterizes subgroups defined by a decision tree structure 
 airq <- subset(airquality, !is.na(Ozone))
 ed<-partykit::extree_data(Ozone ~ ., data = airq)
 airct <- partykit::ctree(Ozone ~ ., data = airq)
-visTree(airct, text.bar = 1.1, text.percentile = 0.9)
+visTree(airct, text.bar = 1.1, text.percentile = 0.8)
 }
 \author{
 Ashwini Venkatasubramaniam and Julian Wolfson
