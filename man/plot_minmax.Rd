@@ -44,7 +44,7 @@ plot_minmax(My, X, Y, str, color.type, alpha, add.p.axis, add.h.axis,
 \item{text.label}{Change the size of the axis annotation}
 }
 \description{
-This function is utilised to generate a series of sub-plots, where each subplot corresponds to individual terminal nodes within the decision tree structure. Each subplot is composed of a histogram (or a barchart) that displays the distribution for the relevant subgroup and colored horizontal bars that summarize the set of covariate splits.
+This function is utilized to generate a series of sub-plots, where each subplot corresponds to individual terminal nodes within the decision tree structure. Each subplot is composed of a histogram (or a barchart) that displays the distribution for the relevant subgroup and colored horizontal bars that summarize the set of covariate splits.
 }
 \keyword{decision}
 \keyword{matrix}

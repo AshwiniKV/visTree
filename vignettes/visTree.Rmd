@@ -57,7 +57,7 @@ data("blsdata")
 
 ## Outcome type
 
-The visTree package is able to accommodate both continuous and categorical outcomes. An option interval = TRUE is utilised within the visTree function to display the relevant graphical output for a continuous outcome rather than a categorical outcome. 
+The visTree package is able to accommodate both continuous and categorical outcomes. An option interval = TRUE is utilized within the visTree function to display the relevant graphical output for a continuous outcome rather than a categorical outcome. 
 
 ### Continuous outcome 
 
@@ -81,7 +81,7 @@ visTree(potentialtree, interval = T)
 
 ### Repeated Splits 
 
-This series of plots describe the splits leading to each subgroup and the splits need not necessarily be composed of different variables. The splits over multiple levels can be performed on the same variable and these are are summarised such that the resulting intervals are readily interpretable. The horizontal bars display these splits and the relevant criterions. 
+This series of plots describe the splits leading to each subgroup and the splits need not necessarily be composed of different variables. The splits over multiple levels can be performed on the same variable and these are are summarized such that the resulting intervals are readily interpretable. The horizontal bars display these splits and the relevant criterions. 
 
 ```{r, fig.show='hide', out.width = '95%',fig.align = 'center', fig.height = 9, ,fig.width = 14, warnings = FALSE}
 potentialtree<-ctree(kcal24h0~skcal+hunger+rrvfood+resteating+liking+wanting+age, data = blsdata, control = ctree_control(mincriterion = 0.95))
@@ -90,7 +90,7 @@ visTree(potentialtree)
 
 ### Other Trees, (e.g., rpart)
 
-The examples in this document have so far focussed on scenarios described over conditional inference trees. The conditional inference tree is implemented as an object of class party using the partykit package. However, the visTree package is also able to accommodate other types of decision tree structures such as CART (implemented by the rpart package); CART is generated as an object of class rpart by the rpart package.   
+The examples in this document have so far focused on scenarios described over conditional inference trees. The conditional inference tree is implemented as an object of class party using the partykit package. However, the visTree package is also able to accommodate other types of decision tree structures such as CART (implemented by the rpart package); CART is generated as an object of class rpart by the rpart package.   
 
 ```{r, fig.show='hide', out.width = '98%',fig.align = 'center', fig.height = 9, ,fig.width = 16, warnings = FALSE}
 potentialtree<-rpart(kcal24h0~., data = newblsdata, control = rpart.control(cp = 0.015))
@@ -101,7 +101,7 @@ visTree(potentialtree)
 
 ### Text
 
-The controls within the visTree function can be utilised to specify different text sizes for the title of the subplots (text.title), title of the histogram (text.main), axis labels placed at the tickmarks (text.axis), title labels for the axis (text.labels) and the splits placed on the horizontal bars (text.bar). 
+The controls within the visTree function can be utilized to specify different text sizes for the title of the subplots (text.title), title of the histogram (text.main), axis labels placed at the tickmarks (text.axis), title labels for the axis (text.labels) and the splits placed on the horizontal bars (text.bar). 
 
 ```{r, fig.show='hide', out.width = '98%',fig.align = 'center', fig.height = 9, ,fig.width = 16, warnings = FALSE}
 potentialtree<-ctree(kcal24h0~skcal+hunger+rrvfood+resteating+liking+wanting+age, data = blsdata, control = ctree_control(mincriterion = 0.95))
@@ -110,7 +110,7 @@ visTree(potentialtree, text.label = 1.5, text.title = 1.5, text.bar = 1.5, text.
 
 ### Axis 
 
-The axis for each subplot within the visualisation is placed above the horizontal colored bars for the percentiles of relevant covariates and below the histogram/bar chart for the outcome values. Both these axes can be removed or placed as necessary using the options add.h.axis (associated with the colored bars) and add.p.axis (associated with the percentiles) within the visTree function. 
+The axis for each subplot within the visualization is placed above the horizontal colored bars for the percentiles of relevant covariates and below the histogram/bar chart for the outcome values. Both these axes can be removed or placed as necessary using the options add.h.axis (associated with the colored bars) and add.p.axis (associated with the percentiles) within the visTree function. 
 
 ```{r, fig.show='hide', out.width = '98%',fig.align = 'center', fig.height = 9, ,fig.width = 16, warnings = FALSE}
 potentialtree<-ctree(kcal24h0~skcal+hunger+rrvfood+resteating+liking+wanting+age, data = blsdata, control = ctree_control(mincriterion = 0.95))
