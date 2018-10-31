@@ -6,9 +6,10 @@
 #' @param alpha Transparency
 #' @keywords pathway decision tree
 #' @export
-#' @examples
-#' makeTransparent(colortype = rainbow(2), alpha = 0.7)
-#'
+#' @examples 
+#' makeTransparent(2, 0.5)
+#' makeTransparent(4, 0.75)
+#' 
 makeTransparent <- function(colortype, alpha) {
   ## Helper function to make colors transparent
   if (alpha < 0 | alpha > 1) stop("alpha must be between 0 and 1")

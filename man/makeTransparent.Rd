@@ -15,7 +15,8 @@ makeTransparent(colortype, alpha)
 Function to adjust the transparency and define the color scheme within the visualization.
 }
 \examples{
-makeTransparent(colortype = rainbow(2), alpha = 0.7)
+makeTransparent(2, 0.5)
+makeTransparent(4, 0.75)
 
 }
 \keyword{decision}
