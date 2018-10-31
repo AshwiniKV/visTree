@@ -47,12 +47,15 @@ This visualization characterizes subgroups defined by a decision tree structure 
 \examples{
 data(blsdata)
 newblsdata<-blsdata[,c(7,21, 22,23, 24, 25, 26)]
+## Continuous response
 ptree1<-partykit::ctree(kcal24h0~., data = newblsdata)
 visTree(ptree1, text.axis = 1.3, text.label = 1.2, text.bar = 1.2, alpha = 0.5)
 
+## Repeated covariates in the splits of the decision tree
 ptree2<-partykit::ctree(kcal24h0~skcal+rrvfood+resteating+age, data = blsdata)
 visTree(ptree2, text.axis = 1.3, text.label = 1.2, text.bar = 1.2, alpha = 0.5)
 
+## Categorical response
 blsdataedit<-blsdata[,-7]
 blsdataedit$bin<-0 
 blsdataedit$bin<-cut(blsdata$kcal24h0, unique(quantile(blsdata$kcal24h0)), 
@@ -62,6 +65,7 @@ ptree3<-partykit::ctree(kcal24h0~hunger+rrvfood+resteating+liking, data = blsdat
 visTree(ptree3, interval = TRUE,  color.type = 1, alpha = 0.6, 
 text.percentile = 1.2, text.bar = 1.8)
 
+## Other decision trees (e.g., rpart) 
 ptree4<-rpart::rpart(kcal24h0~wanting+liking+rrvfood, data = newblsdata, 
 control = rpart::rpart.control(cp = 0.029))
 visTree(ptree4, text.bar = 1.8, text.label = 1.4, text.round = 1, 
