@@ -6,9 +6,6 @@
 #' @param alpha Transparency
 #' @keywords pathway decision tree
 #' @export
-#' @examples 
-#' makeTransparent(2, 0.5)
-#' makeTransparent(4, 0.75)
 #' 
 makeTransparent <- function(colortype, alpha) {
   ## Helper function to make colors transparent
