@@ -53,10 +53,15 @@
 #' visTree(ptree1, text.axis = 1.3, text.label = 1.2, text.bar = 1.2, alpha = 0.65, 
 #' color.type = 3)
 #' 
-#' ## Remove the axes for the series of the sub-plots
+#' ## Remove the axes over the percentiles and the response values.
 #' ptree1<-partykit::ctree(kcal24h0~., data = newblsdata)
 #' visTree(ptree1, text.axis = 1.3, text.label = 1.2, text.bar = 1.2, alpha = 0.65, 
 #' color.type = 3, add.p.axis = FALSE, add.h.axis = FALSE) 
+#' 
+#' # Remove the density line over the histograms 
+#' ptree1<-partykit::ctree(kcal24h0~., data = newblsdata)
+#' visTree(ptree1, text.axis = 1.3, text.label = 1.2, text.bar = 1.2, alpha = 0.65, 
+#' color.type = 3, density.line = FALSE) 
 
 visTree <- function(cond.tree, rng = NULL, interval = FALSE, color.type = 1, alpha = 0.5, add.h.axis = TRUE, add.p.axis = TRUE, text.round = 1, text.main = 1.5, text.bar = 1.5, text.title = 1.5, text.label = 1.5, text.axis = 1.5, text.percentile = 0.7, density.line = TRUE) {
   ## Wrapper function to produce plots from a conditional inference tree

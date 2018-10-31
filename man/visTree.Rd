@@ -76,10 +76,15 @@ ptree1<-partykit::ctree(kcal24h0~., data = newblsdata)
 visTree(ptree1, text.axis = 1.3, text.label = 1.2, text.bar = 1.2, alpha = 0.65, 
 color.type = 3)
 
-## Remove the axes for the series of the sub-plots
+## Remove the axes over the percentiles and the response values.
 ptree1<-partykit::ctree(kcal24h0~., data = newblsdata)
 visTree(ptree1, text.axis = 1.3, text.label = 1.2, text.bar = 1.2, alpha = 0.65, 
 color.type = 3, add.p.axis = FALSE, add.h.axis = FALSE) 
+
+# Remove the density line over the histograms 
+ptree1<-partykit::ctree(kcal24h0~., data = newblsdata)
+visTree(ptree1, text.axis = 1.3, text.label = 1.2, text.bar = 1.2, alpha = 0.65, 
+color.type = 3, density.line = FALSE) 
 }
 \author{
 Ashwini Venkatasubramaniam and Julian Wolfson
