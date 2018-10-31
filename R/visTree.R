@@ -21,7 +21,7 @@
 #' @author Ashwini Venkatasubramaniam and Julian Wolfson
 #' @export
 #' @importFrom utils capture.output tail
-#' @examples
+#' @examples 
 #' data(blsdata)
 #' newblsdata<-blsdata[,c(7,21, 22,23, 24, 25, 26)]
 #' ## Continuous response
