@@ -22,10 +22,27 @@
 #' @export
 #' @importFrom utils capture.output tail
 #' @examples
-#' airq <- subset(airquality, !is.na(Ozone))
-#' ed<-partykit::extree_data(Ozone ~ ., data = airq)
-#' airct <- partykit::ctree(Ozone ~ ., data = airq)
-#' visTree(airct, text.bar = 1.1, text.percentile = 0.8)
+#' data(blsdata)
+#' newblsdata<-blsdata[,c(7,21, 22,23, 24, 25, 26)]
+#' ptree1<-partykit::ctree(kcal24h0~., data = newblsdata)
+#' visTree(ptree1, text.axis = 1.3, text.label = 1.2, text.bar = 1.2, alpha = 0.5)
+#' 
+#' ptree2<-partykit::ctree(kcal24h0~skcal+rrvfood+resteating+age, data = blsdata)
+#' visTree(ptree2, text.axis = 1.3, text.label = 1.2, text.bar = 1.2, alpha = 0.5)
+#' 
+#' blsdataedit<-blsdata[,-7]
+#' blsdataedit$bin<-0 
+#' blsdataedit$bin<-cut(blsdata$kcal24h0, unique(quantile(blsdata$kcal24h0)), 
+#' include.lowest = TRUE, dig.lab = 4)
+#' names(blsdataedit)[26]<-"kcal24h0"
+#' ptree3<-partykit::ctree(kcal24h0~hunger+rrvfood+resteating+liking, data = blsdataedit)
+#' visTree(ptree3, interval = TRUE,  color.type = 1, alpha = 0.6, 
+#' text.percentile = 1.2, text.bar = 1.8)
+#' 
+#' ptree4<-rpart::rpart(kcal24h0~wanting+liking+rrvfood, data = newblsdata, 
+#' control = rpart::rpart.control(cp = 0.029))
+#' visTree(ptree4, text.bar = 1.8, text.label = 1.4, text.round = 1, 
+#' density.line = TRUE, text.percentile = 1.3)
 
 visTree <- function(cond.tree, rng = NULL, interval = FALSE, color.type = 1, alpha = 0.5, add.h.axis = TRUE, add.p.axis = TRUE, text.round = 1, text.main = 1.5, text.bar = 1.5, text.title = 1.5, text.label = 1.5, text.axis = 1.5, text.percentile = 0.7, density.line = TRUE) {
   ## Wrapper function to produce plots from a conditional inference tree
