@@ -14,11 +14,6 @@ makeTransparent(colortype, alpha)
 \description{
 Function to adjust the transparency and define the color scheme within the visualization.
 }
-\examples{
-makeTransparent(2, 0.5)
-makeTransparent(4, 0.75)
-
-}
 \keyword{decision}
 \keyword{pathway}
 \keyword{tree}

@@ -53,7 +53,7 @@
 #' visTree(ptree1, text.axis = 1.3, text.label = 1.2, text.bar = 1.2, alpha = 0.65, 
 #' color.type = 3)
 #' 
-#' ## Remove the axes over the percentiles and the response values.
+#' ## Remove the axes corresponding to the percentiles and the response values.
 #' ptree1<-partykit::ctree(kcal24h0~., data = newblsdata)
 #' visTree(ptree1, text.axis = 1.3, text.label = 1.2, text.bar = 1.2, alpha = 0.65, 
 #' color.type = 3, add.p.axis = FALSE, add.h.axis = FALSE) 
