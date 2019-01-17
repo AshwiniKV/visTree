@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/AshwiniKV/visTree.svg?branch=master)](https://travis-ci.org/AshwiniKV/visTree)
 [![Coverage status](https://codecov.io/gh/AshwiniKV/visTree/branch/master/graph/badge.svg)](https://codecov.io/github/AshwiniKV/visTree?branch=master)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/visTree)](https://cran.r-project.org/package=visTree)
 [![](https://cranlogs.r-pkg.org/badges/visTree)](https://cran.rstudio.com/web/packages/visTree/index.html)
 
 Visualization of subgroups for decision trees
